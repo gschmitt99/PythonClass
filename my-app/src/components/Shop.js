@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Content = ({ activePage }) => {
   const [data, setData] = useState(null);
+  const firstRender = useRef(true);
   useEffect(() => {
+      if (firstRender.current) {
+         firstRender.current = false;
+         return;
+      }
       console.log("fetching data");
       fetch("http://phoenix2025:5000/data")
         .then((response) => response.json())

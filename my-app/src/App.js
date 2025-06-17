@@ -37,7 +37,6 @@ const App = () => {
             <Header />
             <Menu setActivePage={setActivePage} />
             <Content activePage={activePage} />
-            <Content />
             <Footer />
         </div>
     );

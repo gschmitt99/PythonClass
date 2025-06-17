@@ -1,0 +1,5 @@
+database:
+   host: "raspberrypi.local"
+   user: "greg"
+   password: "secret"
+   database: "personal"
