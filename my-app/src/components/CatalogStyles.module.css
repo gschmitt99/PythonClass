@@ -1,0 +1,78 @@
+/* CatalogStyles.module.css */
+.catalogContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.leftPanel {
+  flex: 1;
+  max-width: 300px;
+}
+
+.rightPanel {
+  flex: 1;
+  max-width: 400px;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.modifierBox {
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  background-color: #fcfcfc;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+
+.sectionHeading {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.itemDetailsContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.itemLeft {
+  flex: 1;
+}
+
+.itemRight {
+  flex: 1;
+}
+
+.tileGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.tileCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  padding: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.tileCard:hover {
+  transform: scale(1.03);
+}

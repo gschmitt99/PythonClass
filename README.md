@@ -1,7 +1,7 @@
 # PythonClass
 Repo for Learnings
 
-The frontend here is started by:
+The frontend here is started by from my-app:
 npm start
 
 to configure the packages in python:
@@ -18,3 +18,7 @@ source flask_env/bin/activate
 #these were the packages that were installed
 pip install flask
 pip install flask_cors
+
+#to startup the python environment (or specifically flask server)
+source flask_env/bin/activate
+python3 app.py

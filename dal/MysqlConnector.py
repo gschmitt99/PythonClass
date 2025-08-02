@@ -1,5 +1,8 @@
 import mysql.connector
 import pandas as pd
+from flask import Flask
+
+app = Flask(__name__)
 
 class MySQLConnector:
     def __init__(self, host, user, password, database):
@@ -17,7 +20,7 @@ class MySQLConnector:
                 password=self.password,
                 database=self.database
             )
-            print("Connected to MySQL")
+            #print("Connected to MySQL")
         except mysql.connector.Error as err:
             print("Error:", err)
 
@@ -84,6 +87,7 @@ class MySQLConnector:
         if group_by is not None and len(group_by) > 0:
             query += f" group by {group_by}"
         try:
+            app.logger.info(query)
             cursor.execute(query)
             rows = cursor.fetchall()
             df = pd.DataFrame(rows,columns=fields)
