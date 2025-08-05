@@ -7,11 +7,12 @@ import ItemDetailPanel from "./ItemDetailPanel";
 //import { getCategoryData, getItemData } from "../services/catalogAPI";
 import { createCatalogDataSource } from "../services/DataSourceFactory";
 
-const Shop = ({ selectedCategory }) => {
+const Shop = ({ selectedCategory, onAddToCart, cart }) => {
   const [items, setItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [itemDetails, setItemDetails] = useState(null);
-  const dataSource = createCatalogDataSource("prod")
+
+  const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
 
   useEffect(() => {
     if (!selectedItemId) return;
@@ -32,14 +33,14 @@ const Shop = ({ selectedCategory }) => {
 
   if (itemDetails) {
     const item = itemDetails;
-    return <ItemDetailPanel item={item} onBack={handleBack} />;
+    return <ItemDetailPanel item={item} onBack={handleBack} onAddToCart={onAddToCart} />;
   }
 
   return (
     <div>
       <h2 className={styles.sectionHeading}>Items in {selectedCategory.length}</h2>
       <div className={styles.gridContainer}>
-        {selectedCategory.map(({pk, name}) => {
+        {selectedCategory.map(({ pk, name }) => {
           return (
             <MenuItemTile
               key={pk}

@@ -1,9 +1,12 @@
 import React, { useState, useMemo } from "react";
 import styles from "./CatalogStyles.module.css";
 
-const ItemDetailPanel = ({ item, onBack }) => {
-  const [selectedVariation, setSelectedVariation] = useState(null);
+const ItemDetailPanel = ({ item, onBack, onAddToCart }) => {
+  const [selectedVariation, setSelectedVariation] = useState(
+    item.variations && item.variations.length > 0 ? item.variations[0] : null
+  );
   const [selectedModifiersByList, setSelectedModifiersByList] = useState({});
+  const [kitchenNotes, setKitchenNotes] = useState(""); // New state for notes
 
   // Final price calculation
   const finalPrice = useMemo(() => {
@@ -27,6 +30,23 @@ const ItemDetailPanel = ({ item, onBack }) => {
     });
   };
 
+  // Handler for Add to Cart
+  const handleAddToCart = () => {
+    if (!selectedVariation) {
+      alert("Please select a variation before adding to cart.");
+      return;
+    }
+    // Flatten modifiers into a single array
+    const selectedModifiers = Object.values(selectedModifiersByList).flat();
+    onAddToCart({
+      item,
+      variation: selectedVariation,
+      modifiers: selectedModifiers,
+      price: finalPrice,
+      notes: kitchenNotes, // Pass notes to cart
+    });
+  };
+
   return (
     <div className={styles.itemDetailsContainer}>
       {/* Left Panel */}
@@ -39,6 +59,26 @@ const ItemDetailPanel = ({ item, onBack }) => {
         <p className={styles.itemPrice}>
           Total Price: ${finalPrice}
         </p>
+        <button
+          onClick={handleAddToCart}
+          disabled={!selectedVariation}
+          style={{ marginTop: "16px", padding: "10px 20px", fontWeight: "bold" }}
+        >
+          Add to Cart
+        </button>
+        {/* Notes to Kitchen */}
+        <div style={{ marginTop: "16px" }}>
+          <label>
+            <strong>Notes to Kitchen:</strong>
+            <textarea
+              value={kitchenNotes}
+              onChange={e => setKitchenNotes(e.target.value)}
+              rows={3}
+              style={{ width: "100%", marginTop: "4px" }}
+              placeholder="Add any special instructions..."
+            />
+          </label>
+        </div>
       </div>
 
       {/* Right Panel */}

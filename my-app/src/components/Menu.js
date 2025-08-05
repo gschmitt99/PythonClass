@@ -5,9 +5,7 @@ import { createCatalogDataSource } from "../services/DataSourceFactory";
 const Menu = ({ setActivePage, setSelectedCategory }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
-  // TODO: make this look like this:
-  // const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
-  const dataSource = createCatalogDataSource("prod")
+  const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -19,7 +17,6 @@ const Menu = ({ setActivePage, setSelectedCategory }) => {
       const details = await dataSource.getCategories();
       setMenuItems(details);
     };
-
     fetchMenuItems();
   }, []);
 
