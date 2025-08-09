@@ -17,21 +17,21 @@ def create_connector(func):
     return wrapper
 
 @create_connector
-def get_categories_by_source(dal, source, table):
-    where_clause = f"source='{source}'"
-    return dal.get_categories(table, where_clause)
-    #for cat in categories:
-    #    retval += cat + "\n"
-    #return retval
+def get_variation_by_pk(dal, variation_pk):
+    return dal.get_variation_by_pk(variation_pk)
 
 @create_connector
-def get_web_menu_categories(dal):
-    return dal.get_menu_categories("webcategories")
+def get_modifier_by_pk(dal, modifier_pk):
+    return dal.get_modifier_by_pk(modifier_pk)
+
+@create_connector
+def get_web_menu_categories(dal, is_prod):
+    return dal.get_menu_categories("webcategories", is_prod)
     
 @create_connector
-def get_cat_data(dal, category_id):
-   return dal.get_items_by_category_id("items", category_id)
+def get_cat_data(dal, category_id, is_prod):
+   return dal.get_items_by_category_id("items", category_id, is_prod)
 
 @create_connector
-def get_item_details(dal, item_pk):
-   return dal.get_item_details(item_pk)
+def get_item_details(dal, item_pk, is_prod):
+   return dal.get_item_details(item_pk, is_prod)

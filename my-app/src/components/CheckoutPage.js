@@ -3,6 +3,14 @@ import SquarePaymentForm from "./SquarePaymentForm";
 import { postPaymentToBackend } from "../services/paymentAPI";
 
 const CheckoutPage = ({ cart, onPlaceOrder }) => {
+  const checkoutCart = cart.map((entry) => ({
+    variation_pk: entry.variation.pk,
+    modifiers: entry.modifiers || [],
+    price: Number(Math.round(parseFloat(entry.price) * 100)),
+    quantity: String(entry.quantity || 1),
+    note: entry.note || ""
+  }));
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -117,7 +125,7 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
       </form>
       {}
       4111 1111 1111 1111
-      <SquarePaymentForm onNonce={(nonce) => postPaymentToBackend(nonce, cart, form, onPlaceOrder)} />
+      <SquarePaymentForm onNonce={(nonce) => postPaymentToBackend(nonce, checkoutCart, form, onPlaceOrder)} />
     </div>
   );
 };
