@@ -1,3 +1,4 @@
+// TODO: verify this, but I believe this code is not used whatsoever.
 const createSquareOrder = async (cart) => {
   const line_items = cart.map(entry => ({
     catalog_object_id: entry.variation_id,

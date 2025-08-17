@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
+import GoogleMapSection from "./components/GoogleMapSection";
 
 const App = () => {
     console.log("App component rendered: env= ", process.env.REACT_APP_ENV);
@@ -40,17 +41,11 @@ const App = () => {
 
     return (
         <div>
-            <Header />
+            <Header cart={cart}/>
             <Menu 
               setActivePage={setActivePage}
               setSelectedCategory={setSelectedCategory}
             />
-            <div 
-               style={{ position: "fixed", top: 10, right: 10, cursor: "pointer", color: "blue", textDecoration: "underline" }}
-               onClick={() => setActivePage("Cart")}
-            >
-              🛒 Cart: {cart.length} item{cart.length !== 1 ? "s" : ""}
-            </div>
             <Content 
               onAddToCart={handleAddToCart}
               cart={cart}
@@ -61,6 +56,7 @@ const App = () => {
               onPlaceOrder={handlePlaceOrder}
               setActivePage={setActivePage}
             />
+            <GoogleMapSection />
             <Footer />
         </div>
     );
