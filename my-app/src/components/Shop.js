@@ -55,17 +55,25 @@ const Shop = ({ selectedCategory, onAddToCart, cart }) => {
           ? `${selectedCategory.length} items`
           : "No items available"}
       </h2>
-      <div className={styles.gridContainer}>
-        {pagedItems?.map(({ pk, name }) => (
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "20px",
+        padding: "20px"
+      }}>
+        {
+        pagedItems.map(({ pk, name, price }) => (
           <MenuItemTile
             key={pk}
             itemId={pk}
             itemName={name}
+            itemPrice={price}
             onClick={setSelectedItemId}
           />
         ))}
-      </div>
-      
+</div>
+
+
       <div style={{ marginTop: "20px", textAlign: "center" }}>
         <button
           disabled={currentPage === 1}

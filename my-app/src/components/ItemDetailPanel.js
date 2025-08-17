@@ -83,6 +83,7 @@ const ItemDetailPanel = ({ item, onBack, onAddToCart }) => {
 
       {/* Right Panel */}
       <div className={styles.itemRight}>
+        {item.variations.length > 1 && (
         <div>
           <h3>Variations</h3>
           {item.variations.map((variation) => (
@@ -98,26 +99,46 @@ const ItemDetailPanel = ({ item, onBack, onAddToCart }) => {
             </label>
           ))}
         </div>
+        )}
 
-        <div style={{ marginTop: "24px" }}>
-          <h3>Available Modifiers</h3>
-          {item.modifier_lists.map((list) => (
-            <div key={list.pk} style={{ marginBottom: "16px" }}>
-              <h4>{list.name}</h4>
-              {list.modifiers.map((mod) => (
-                <label key={mod.pk} style={{ display: "block", marginBottom: "4px" }}>
-                  <input
-                    type="checkbox"
-                    checked={selectedModifiersByList[list.pk]?.some((m) => m.pk === mod.pk) || false}
-                    onChange={() => toggleModifier(list.pk, mod)}
-                  />
-                  {mod.name}
-                  {mod.amount ? ` (+$${(mod.amount / 100).toFixed(2)})` : ""}
-                </label>
-              ))}
-            </div>
-          ))}
-        </div>
+        {item.modifier_lists.length > 0 && (
+          <div style={{ marginTop: "12px", fontSize: "0.775rem" }}>
+            <h3 style={{ fontSize: "1rem", marginBottom: "6px" }}>Available Modifiers</h3>
+            {item.modifier_lists.map((list) => (
+              <div key={list.pk} style={{ marginBottom: "12px" }}>
+                <h4 style={{ fontSize: "0.95rem", marginBottom: "6px" }}>{list.name}</h4>
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, max-content)", // each column fits content
+                    columnGap: "24px", // spacing between columns
+                    rowGap: "8px",
+                  }}
+                >
+                  {list.modifiers.map((mod) => (
+                    <label
+                      key={mod.pk}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        whiteSpace: "nowrap", // prevents wrapping
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedModifiersByList[list.pk]?.some((m) => m.pk === mod.pk) || false}
+                        onChange={() => toggleModifier(list.pk, mod)}
+                        style={{ marginRight: "6px" }}
+                      />
+                      {mod.name}
+                      {mod.amount ? ` (+$${(mod.amount / 100).toFixed(2)})` : ""}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
