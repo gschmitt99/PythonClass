@@ -26,47 +26,48 @@ const Menu = ({ setActivePage, setSelectedCategory }) => {
     setSelectedCategory(details);
   };
 
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
   return (
-    <nav>
-      <button onClick={() => setActivePage("Home")}>Home</button>
-      <button onClick={() => setActivePage("About")}>About</button>
-      <div
-        style={{ position: "relative", display: "inline-block" }}
-        onMouseEnter={() => setShowDropdown(true)}
-        onMouseLeave={() => setShowDropdown(false)}
-      >
-        <button onClick={() => setActivePage("Menu")}>Shop</button>
-        {showDropdown && (
-          <ul
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              backgroundColor: "#fff",
-              border: "1px solid #ccc",
-              padding: "8px",
-              margin: 0,
-              listStyleType: "none",
-              zIndex: 1,
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-              minWidth: "160px"
-            }}
-          >
-            {menuItems.map(({ pk, name }) => {
-              return (
-                <li
-                  style={{ padding: "6px 12px", cursor: "pointer" }}
-                  onClick={() => handleItemClick(pk)}
-                >
-                  {name}
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </div>
-      <button onClick={() => setActivePage("Contact")}>Contact</button>
-    </nav>
+    <div className="nav-wrapper">
+      <nav className="nav-bar">
+          <div className="nav-left">
+            <button onClick={() => setActivePage("Home")}>Home</button>
+            <button onClick={() => setActivePage("About")}>About Us</button>
+          </div>
+
+          <div className="logo-container">
+            <img src="/imagery/Sm-orr-Sweets-Logo-v2.png"
+              sizes="(min-width: 0px) and (max-width: 480px) 480px, (min-width: 481px) and (max-width: 980px) 980px, (min-width: 981px) and (max-width: 1280px) 1280px, (min-width: 1281px) 1342px, 100vw"
+            />
+          </div>
+
+          <div className="nav-right">
+            <div
+              className="dropdown-wrapper"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => {
+                  setShowDropdown(false);
+                }
+              }
+            >
+              <button onClick={() => setActivePage("Menu")}>
+                Shop <span className="dropdown-arrow">▼</span>
+              </button>
+              {showDropdown && (
+                <ul className="dropdown-menu">
+                  {menuItems.map(({ pk, name }) => (
+                    <li key={pk} onClick={() => handleItemClick(pk)}>
+                      {name}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button onClick={() => setActivePage("Contact")}>Contact</button>
+          </div>
+        </nav>
+    </div>
   );
 };
 

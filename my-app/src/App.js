@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import "./App.css";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Content from "./components/Content";
@@ -40,8 +41,11 @@ const App = () => {
     };
 
     return (
-        <div>
-            <Header cart={cart}/>
+        <div class="big-class">
+            <Header
+              cart={cart}
+              setActivePage={setActivePage}
+            />
             <Menu 
               setActivePage={setActivePage}
               setSelectedCategory={setSelectedCategory}

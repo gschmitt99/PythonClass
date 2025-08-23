@@ -92,6 +92,7 @@ class Item:
             "pk": self.pk,
             "id": self.item_id,
             "name": self.name,
+            "description": self.description,
             "price": self.price,
             "variations": [v.to_dict() for v in self.variations],
             "modifier_lists": [ml.to_dict() for ml in self.modifier_lists]
@@ -104,14 +105,15 @@ class DataAccess:
 
     def get_items_by_category_id(self, view_name, category_pk, is_prod):
        data = []
-       fields = ['pk', 'name', 'price']
+       fields = ['pk', 'name', 'description', 'price']
        df = self.connector.query_data(fields, view_name, where_clause=f"category_pk={category_pk} and is_prod={is_prod}")
        # todo: this will need to be expanded into having a map for the values
        for i in df.values:
           data.append({
              "pk": i[0],
              "name": i[1],
-             "price": float(i[2])
+             "description": i[2],
+             "price": float(i[3])
           })
        return data
 

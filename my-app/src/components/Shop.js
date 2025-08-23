@@ -62,11 +62,12 @@ const Shop = ({ selectedCategory, onAddToCart, cart }) => {
         padding: "20px"
       }}>
         {
-        pagedItems.map(({ pk, name, price }) => (
+        pagedItems.map(({ pk, name, price, description }) => (
           <MenuItemTile
             key={pk}
             itemId={pk}
             itemName={name}
+            itemDescription={description}
             itemPrice={price}
             onClick={setSelectedItemId}
           />

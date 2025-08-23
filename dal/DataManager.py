@@ -3,10 +3,10 @@ from dal.DataAccess import DataAccess
 from config.config import Configuration
 
 def create_connector(func):
-    db_host = Configuration()._config['database']['host']
-    db_user = Configuration()._config['database']['user']
-    db_password = Configuration()._config['database']['password']
-    db_database = Configuration()._config['database']['database']
+    db_host = Configuration().get('database', 'host', "raspberrypi")
+    db_user = Configuration().get('database', 'user', "greg")
+    db_password = Configuration().get('database', 'password', "notapassword")
+    db_database = Configuration().get('database', 'database', "smorrsweets")
     def wrapper(*args, **kwargs):
         connector = MySQLConnector(host=db_host, user=db_user, password=db_password,
                                    database=db_database)

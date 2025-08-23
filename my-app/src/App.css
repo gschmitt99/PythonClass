@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.big-class {
+  background-color: rgb(244,239,229);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +39,50 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-wrapper {
+  background-color: white;
+  border-top: 4px solid #007BFF;
+  border-bottom: 4px solid #007BFF;
+  padding: 12px 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 16px;
+}
+
+.logo-container img {
+  height: 80px;
+}
+
+.dropdown-wrapper {
+  position: relative;
+}
+
+.dropdown-arrow {
+  margin-left: 4px;
+}
+
+.dropdown-menu {
+  margin-top: 0; /* or reduce it */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 0px solid #ccc;
+  list-style: none;
+  padding: 1px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
