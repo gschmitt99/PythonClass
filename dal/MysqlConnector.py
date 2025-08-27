@@ -87,6 +87,7 @@ class MySQLConnector:
         if group_by is not None and len(group_by) > 0:
             query += f" group by {group_by}"
         try:
+            print(query)
             app.logger.info(query)
             cursor.execute(query)
             rows = cursor.fetchall()

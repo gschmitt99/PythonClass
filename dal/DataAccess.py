@@ -51,7 +51,6 @@ class ModifierList:
 
     def __repr__(self):
         return f"ModifierList(name='{self.name}', count={len(self.modifiers)})"
-        ...
 
 
 class Variation:
@@ -75,9 +74,30 @@ class Variation:
     def __repr__(self):
         return f"Variation(name='{self.name}', price={self.price})"
 
+class Image:
+    REQUIRED_FIELDS = ["pk", "image_id", "url"]
+
+    def __init__(self, pk, image_id, url):
+        self.pk = pk
+        self.image_id = image_id
+        self.url = url
+
+    def __repr(self):
+        return F"url={self.image_id}"
+
+    def to_dict(self):
+       # Note yes I know are passing the image_id in place of the url
+       # change this namd if am ready to make it something proper.
+       return {
+           "pk": self.pk,
+           "image_id": self.image_id,
+           "url": self.image_id,
+       }
 
 class Item:
-    def __init__(self, pk, item_id, category_id, name, description, price, variations, modifier_lists):
+    REQUIRED_FIELDS = ["pk", "item_id", "category_id", "name", "description", "price"]
+
+    def __init__(self, pk, item_id, category_id, name, description, price, variations, modifier_lists, images):
         self.pk = pk
         self.item_id = item_id
         self.category_id = category_id
@@ -86,6 +106,10 @@ class Item:
         self.price = price
         self.variations = variations  # list of Variation objects
         self.modifier_lists = modifier_lists  # list of ModifierList objects
+        self.images = images
+
+    def __repr__(self):
+        return f"Item(name='{self.name}', price={self.price}, variations={len(self.variations)}, modifiers={len(self.modifier_lists)} images={len(self.images)})"
 
     def to_dict(self):
         return {
@@ -95,7 +119,8 @@ class Item:
             "description": self.description,
             "price": self.price,
             "variations": [v.to_dict() for v in self.variations],
-            "modifier_lists": [ml.to_dict() for ml in self.modifier_lists]
+            "modifier_lists": [ml.to_dict() for ml in self.modifier_lists],
+            "images": [i.to_dict() for i in self.images]
         }
 
 
@@ -104,18 +129,37 @@ class DataAccess:
         self.connector = connector
 
     def get_items_by_category_id(self, view_name, category_pk, is_prod):
-       data = []
-       fields = ['pk', 'name', 'description', 'price']
-       df = self.connector.query_data(fields, view_name, where_clause=f"category_pk={category_pk} and is_prod={is_prod}")
-       # todo: this will need to be expanded into having a map for the values
-       for i in df.values:
-          data.append({
-             "pk": i[0],
-             "name": i[1],
-             "description": i[2],
-             "price": float(i[3])
-          })
-       return data
+        data = []
+        fields = ['pk', 'name', 'description', 'price']
+
+        # Step 1: Get base item data
+        df_items = self.connector.query_data(fields, view_name,
+                                             where_clause=f"category_pk={category_pk} and is_prod={is_prod}")
+
+        # Step 2: Get item ? image_pk mapping
+        df_item_images = self.connector.query_data(['item_pk', 'image_pk'], 'v_item_images')
+        item_to_image_pks = df_item_images.groupby('item_pk')['image_pk'].apply(list).to_dict()
+
+        # Step 3: Get image_pk ? url mapping
+        df_images = self.connector.query_data(['pk', 'image_id'], 'v_image')
+        image_pk_to_url = dict(zip(df_images['pk'], df_images['image_id']))
+
+        # Step 4: Build enriched item list
+        for i in df_items.values:
+            item_pk = i[0]
+            image_pks = item_to_image_pks.get(item_pk, [])
+            image_urls = [image_pk_to_url.get(pk) for pk in image_pks if pk in image_pk_to_url]
+
+            data.append({
+                "pk": item_pk,
+                "name": i[1],
+                "description": i[2],
+                "price": float(i[3]),
+                "images": image_urls  # always a list, even if empty
+            })
+
+        return data
+
 
     def get_modifier_list_by_pk(self, modifier_list_pk):
         ml_df = self.connector.query_data(ModifierList.REQUIRED_FIELDS, "v_modifier_list",
@@ -156,8 +200,7 @@ class DataAccess:
 
     def get_item_details(self, item_pk, is_prod):
         # 1. Item
-        item_fields = ["pk", "item_id", "category_id", "name", "description", "price"]
-        item_df = self.connector.query_data(item_fields, "v_item", where_clause=f"pk={item_pk} and is_prod={is_prod}")
+        item_df = self.connector.query_data(Item.REQUIRED_FIELDS, "v_item", where_clause=f"pk={item_pk} and is_prod={is_prod}")
         if item_df.empty:
             return None
         item_data = item_df.iloc[0]
@@ -175,13 +218,13 @@ class DataAccess:
         iml_fields = ["pk", "item_pk", "modifier_list_pk"]
         iml_df = self.connector.query_data(iml_fields, "v_item_modifier_list",
                                            where_clause=f"item_pk='{item_data['pk']}'")
-                                           #where_clause=f"item_pk='{item_data['pk']}' and is_prod={is_prod}")
 
         modifier_lists = []
         for _, link in iml_df.iterrows():
             ml_pk = link["modifier_list_pk"]
 
-            ml_df = self.connector.query_data(ModifierList.REQUIRED_FIELDS, "v_modifier_list", where_clause=f"pk='{ml_pk}' and is_prod={is_prod}")
+            ml_df = self.connector.query_data(ModifierList.REQUIRED_FIELDS, "v_modifier_list", \
+                                              where_clause=f"pk='{ml_pk}' and is_prod={is_prod}")
             ml_row = ml_df.iloc[0]
 
             mod_df = self.connector.query_data(Modifier.REQUIRED_FIELDS + ["modifier_list_pk"], "v_modifier",
@@ -205,7 +248,23 @@ class DataAccess:
                 )
             )
 
-        # 4. Compose final item
+        # 4. Images
+        image_fields = ["pk", "item_pk", "image_pk"]
+        ii_df = self.connector.query_data(image_fields, "v_item_images",
+                                           where_clause=f"item_pk='{item_data['pk']}'")
+
+        image_lists = []
+        for _, link in ii_df.iterrows():
+            image_pk = link["image_pk"]
+
+            image_df = self.connector.query_data(Image.REQUIRED_FIELDS, "v_image",
+                                               where_clause=f"pk='{image_pk}'")
+            images = [
+                Image(**{field: m[field] for field in Image.REQUIRED_FIELDS})
+                for _, m in image_df.iterrows()
+            ]
+
+        # 5. Compose final item
         item_obj = Item(
             pk=item_data["pk"],
             item_id=item_data["item_id"],
@@ -214,7 +273,8 @@ class DataAccess:
             description=item_data["description"],
             price=item_data["price"],
             variations=variations,
-            modifier_lists=modifier_lists
+            modifier_lists=modifier_lists,
+            images=images
         )
 
         return item_obj

@@ -64,13 +64,25 @@
   margin-top: 16px;
 }
 
-.tileCard {
-  background-color: #fff;
+.imageContainer {
+  width: 30vw;           /* ~1/3 of screen width */
+  max-width: 300px;      /* optional cap */
+  flex-shrink: 0;
+}
+
+.imageContainer img {
+  width: 100%;           /* scale to container */
+  height: auto;          /* maintain aspect ratio */
+  object-fit: contain;   /* ensures full image fits */
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  padding: 16px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+}
+
+.tileImage {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-bottom: 8px;
 }
 
 .tileCard:hover {

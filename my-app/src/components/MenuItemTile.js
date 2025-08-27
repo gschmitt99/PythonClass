@@ -1,15 +1,24 @@
 import React from "react";
 import styles from "./CatalogStyles.module.css";
 
-const MenuItemTile = ({ itemId, itemName, itemDescription, itemPrice, onClick }) => (
-  <div className={styles.tileCard} onClick={() => onClick(itemId)}>
-    {/* <img src={`https://www.smorrsweets.com/wp-content/uploads/2024/10/13.png`} alt={itemName} className={styles.tileImage} /> */}
-    <h3>{itemName}</h3>
-    <h4>{itemDescription}</h4>
+const MenuItemTile = ({ item, onClick }) => {
+  const {pk, name, description, price, images} = item;
+  console.log(`Item ${pk} has ${images?.length || 0} image(s)`);
+  return (
+  <div className={styles.tileCard} onClick={() => onClick(pk)}>
+    <div className={styles.imageContainer}>
+        {images.map((url) => (
+        <img key={url} src={`/imagery/${url}.jpg`}
+        />
+        ))}
+    </div>
+    <h3>{name}</h3>
+    <h4>{description}</h4>
     <p style={{ fontSize: "0.9rem", color: "red" }}>
-      ${itemPrice}
+      {price}
     </p>
   </div>
-);
+  );
+};
 
 export default MenuItemTile;
