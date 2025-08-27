@@ -4,7 +4,7 @@ import MenuItemTile from "./MenuItemTile";
 import ItemDetailPanel from "./ItemDetailPanel";
 import { createCatalogDataSource } from "../services/DataSourceFactory";
 
-const Shop = ({ selectedCategory, onAddToCart, cart }) => {
+const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [itemDetails, setItemDetails] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,8 +42,10 @@ const Shop = ({ selectedCategory, onAddToCart, cart }) => {
     return (
       <ItemDetailPanel
         item={itemDetails}
+        cart={cart}
         onBack={handleBack}
         onAddToCart={onAddToCart}
+        setActivePage={setActivePage}
       />
     );
   }

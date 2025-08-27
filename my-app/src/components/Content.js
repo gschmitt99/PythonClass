@@ -27,6 +27,7 @@ const Content = ({
             selectedCategory={selectedCategory}
             onAddToCart={onAddToCart}
             cart={cart}
+            setActivePage={setActivePage}
           />
         </h1>
       }

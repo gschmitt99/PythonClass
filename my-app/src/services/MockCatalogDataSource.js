@@ -2,6 +2,10 @@ import MockCatalogData from "./mockCatalogData";
 
 export class MockCatalogDataSource {
 
+  async getEnv() {
+    return "test";
+  }
+
   async getCategoryData(categoryId) {
     const response = MockCatalogData.getCategoryData(categoryId);
     console.log(response.Message);
