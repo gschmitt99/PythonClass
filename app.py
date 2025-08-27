@@ -8,7 +8,7 @@ from dal.OrderValidator import OrderValidator
 from square.square_module import Processor as Processor
 import yaml
 
-is_prod=0
+is_prod = Configuration().get("env", "isprod", True)
 app = Flask(__name__, static_folder="build")
 CORS(app)
 
@@ -88,6 +88,12 @@ def get_data():
 @app.route("/data1")
 def get_data1():
     retval = {"message": "a test1"}
+    return json.dumps(retval)
+
+@app.route("/env")
+def get_env():
+    if is_prod: retval = {"message": "prod"}
+    else: retval = {"message": "test"}
     return json.dumps(retval)
 
 #@app.route("/")

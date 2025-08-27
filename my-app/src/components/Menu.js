@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-//import { getCategories, getCategoryData } from "../services/catalogAPI";
 import { createCatalogDataSource } from "../services/DataSourceFactory";
 
 const Menu = ({ setActivePage, setSelectedCategory }) => {

@@ -259,7 +259,7 @@ class DataAccess:
 
             image_df = self.connector.query_data(Image.REQUIRED_FIELDS, "v_image",
                                                where_clause=f"pk='{image_pk}'")
-            images = [
+            image_lists = [
                 Image(**{field: m[field] for field in Image.REQUIRED_FIELDS})
                 for _, m in image_df.iterrows()
             ]
@@ -274,7 +274,7 @@ class DataAccess:
             price=item_data["price"],
             variations=variations,
             modifier_lists=modifier_lists,
-            images=images
+            images=image_lists
         )
 
         return item_obj

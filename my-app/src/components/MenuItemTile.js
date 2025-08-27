@@ -6,12 +6,14 @@ const MenuItemTile = ({ item, onClick }) => {
   console.log(`Item ${pk} has ${images?.length || 0} image(s)`);
   return (
   <div className={styles.tileCard} onClick={() => onClick(pk)}>
-    <div className={styles.imageContainer}>
-        {images.map((url) => (
-        <img key={url} src={`/imagery/${url}.jpg`}
-        />
-        ))}
-    </div>
+      {Array.isArray(images) && images.length > 0 && (
+        <div className={styles.imageContainer}>
+          {images.map((url) => (
+          <img key={url} src={`/imagery/${url}.jpg`}
+          />
+          ))}
+        </div>
+      )}
     <h3>{name}</h3>
     <h4>{description}</h4>
     <p style={{ fontSize: "0.9rem", color: "red" }}>
