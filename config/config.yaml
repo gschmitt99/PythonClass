@@ -1,5 +1,8 @@
 database:
-   host: "raspberrypi.local"
+   #host: "raspberrypi.local"
+   host: "10.0.0.210"
    user: "greg"
-   password: "secret"
-   database: "personal"
+   password: "siboco1T"
+   database: "smoresweets"
+env:
+   isprod: True
