@@ -2,8 +2,8 @@ import React from "react";
 
 const Content = () => {
     return (
-        <div style={{ padding: "20px", textAlign: "center" }}>
-            <p>This is the Home content area.</p>
+        <div style={{fontFamily:"Voga", backgroundColor:"rgba(255, 246, 226, 1)", color: "#4b4b4bff",  padding: "20px", textAlign: "center" }}>
+            <p>Home</p>
         </div>
     );
 };
