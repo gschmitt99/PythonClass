@@ -1,4 +1,5 @@
-const BASE_URL = "http://phoenix2025:5000";
+//const BASE_URL = "https://phoenix2025:5000";
+const BASE_URL = "http://localhost:5000";
 
 /**
  * Fetch category names and ids
@@ -49,4 +50,20 @@ export const getItemData = async (itemId) => {
     console.error("getItemData error:", error);
     return null;
   }
+};
+
+/**
+ * Fetch the environment information from the server
+ * @returns {Promise<Object>} API response with environment info
+ */
+export const getEnv = async () => {
+  try {
+    const url = `${BASE_URL}/env`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+    console.error("getEnv error:", error);
+    return { env: "unknown" };
+  } 
 };

@@ -20,6 +20,10 @@ apt install npm
 
 ### `npm start`
 
+To run https ... having a self signed cert:
+set HTTPS=true&&npm start
+also, I have set .env to have this
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 

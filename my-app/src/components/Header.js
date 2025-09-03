@@ -1,11 +1,44 @@
 import React from "react";
+import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
 
-const Header = () => {
+const Header = ({ setActivePage, cart }) => {
     return (
-        <header style={{fontFamily:"Voga", backgroundColor: "rgba(255, 246, 226, 1)", color: "#4b4b4bff", padding: "10px", textAlign: "center" }}>
-            <h1 style={{marginBottom:0}}>S'M-ORRS</h1>
-            <h3 style={{marginTop:0}}>Sweets & Café</h3>
-        </header>
+
+    <header
+      style={{
+        backgroundColor: "#007BFF",
+        color: "white",
+        padding: "15px 30px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        position: "relative",
+        zIndex: 1000,
+      }}
+    >
+      {/* Left Section */}
+      <div style={{ display: "flex", gap: "30px" }}>
+        <FaMapMarkerAlt />
+        <div>1250 Texas Pkwy Ste E, Stafford, TX 77477</div>
+        <FaPhoneAlt />
+        <div>(555) 123-4567</div>
+        <FaClock />
+        <div>Mon–Sat 10am–7pm | Closed Sunday</div>
+      </div>
+
+      {/* Right Section */}
+      <div
+        style={{
+          cursor: "pointer",
+          color: "white",
+          textDecoration: "underline",
+        }}
+        onClick={() => setActivePage("Cart")}
+      >
+    🛒 Cart: {cart.length} item{cart.length !== 1 ? "s" : ""}
+      </div>
+    </header>
+
     );
 };
 
