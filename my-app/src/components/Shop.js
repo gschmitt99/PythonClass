@@ -11,7 +11,7 @@ const Shop = ({ selectedCategory }) => {
   const [items, setItems] = useState([]);
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [itemDetails, setItemDetails] = useState(null);
-  const dataSource = createCatalogDataSource("prod")
+  const dataSource = createCatalogDataSource("mock")
 
   useEffect(() => {
     if (!selectedItemId) return;

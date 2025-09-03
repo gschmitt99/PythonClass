@@ -7,7 +7,7 @@ const Menu = ({ setActivePage, setSelectedCategory }) => {
   const [menuItems, setMenuItems] = useState([]);
   // TODO: make this look like this:
   // const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
-  const dataSource = createCatalogDataSource("prod")
+  const dataSource = createCatalogDataSource("mock")
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
