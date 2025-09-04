@@ -1,0 +1,11 @@
+/* ErrorStyles.module.css */
+.inputError {
+  border: 1px solid red !important;
+  background-color: #ffe6e6;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 4px;
+}
