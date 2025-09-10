@@ -70,24 +70,25 @@ const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
             onClick={setSelectedItemId}
           />
         ))}
-</div>
-
-
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage(currentPage - 1)}
-        >
-          Prev
-        </button>
-        <span style={{ margin: "0 10px" }}>Page {currentPage}</span>
-        <button
-          disabled={startIndex + itemsPerPage >= selectedCategory.length}
-          onClick={() => setCurrentPage(currentPage + 1)}
-        >
-          Next
-        </button>
       </div>
+
+      {selectedCategory?.length > itemsPerPage && (
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Prev
+          </button>
+          <span style={{ margin: "0 10px" }}>Page {currentPage}</span>
+          <button
+            disabled={startIndex + itemsPerPage >= selectedCategory.length}
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 };

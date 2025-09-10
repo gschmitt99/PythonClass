@@ -46,7 +46,8 @@ const App = () => {
               cart={cart}
               setActivePage={setActivePage}
             />
-            <Menu 
+            <Menu
+              activePage={activePage}
               setActivePage={setActivePage}
               setSelectedCategory={setSelectedCategory}
             />
