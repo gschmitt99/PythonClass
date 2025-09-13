@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
@@ -95,6 +96,33 @@ def get_env():
     if is_prod: retval = {"message": "prod"}
     else: retval = {"message": "test"}
     return json.dumps(retval)
+
+@app.route("/contact", methods=["POST"])
+def contact():
+    try:
+        data = request.json  # Expecting JSON from frontend
+
+        # Format the message
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        entry = (
+            f"\n---\nTime: {timestamp}\n"
+            f"Name: {data.get('firstName', '')} {data.get('lastName', '')}\n"
+            f"Phone: {data.get('phone', '')}\n"
+            f"Email: {data.get('email', '')}\n"
+            f"Subject: {data.get('subject', '')}\n"
+            f"Message: {data.get('message', '')}\n"
+        )
+
+        # Append to flat file
+        with open("messages.txt", "a") as f:
+            f.write(entry)
+
+        return {"status": "success", "message": "Message saved."}, 200
+    except Exception as e:
+        error_msg = str(e)
+        print(error_msg)
+        print(e)
+        return jsonify({"status": "error", "message": error_msg}), 500
 
 #@app.route("/")
 #def serve_react():

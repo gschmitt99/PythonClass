@@ -1,19 +1,67 @@
-import React from "react";
-import "./Contact.css"; // Optional: for styling
+import React, { useState } from "react";
+import { postContactMessageToBackend } from "../services/paymentAPI";
+import "./Contact.css";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+    humanCheck: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const answer = e.target.humanCheck.value.trim();
+    if (answer !== "7") {
+      alert("Please verify you're human.");
+      return;
+    }
+    try {
+      const result = await postContactMessageToBackend(formData);
+      if (result && result.status === "success") {
+        alert("Message sent!  Thank you for your message, we will respond to you within 24 hours.");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          email: "",
+          subject: "",
+          message: "",
+          humanCheck: "",
+        });
+      } else {
+        console.error("Server responded with error:", result.message);
+        alert("unexpected response from the server.  Server error:"  + (result.message || "unknown error"));
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Failed to send message.");
+    }
+  };
+
   return (
     <div className="contact-container">
       {/* Left: Contact Form */}
       <div className="contact-form-section">
         <h2>Leave Us a Message</h2>
-        <form className="contact-form">
-          <input type="text" name="firstName" placeholder="First Name" required />
-          <input type="text" name="lastName" placeholder="Last Name" required />
-          <input type="tel" name="phone" placeholder="Phone" />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="text" name="subject" placeholder="Subject" />
-          <textarea name="message" placeholder="Your Message" rows="5" required />
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <input type="text" name="firstName" value={formData.firstName} placeholder="First Name" onChange={handleChange} required />
+          <input type="text" name="lastName" value={formData.lastName} placeholder="Last Name" onChange={handleChange} required />
+          <input type="tel" name="phone" value={formData.phone} placeholder="Phone" onChange={handleChange} />
+          <input type="email" name="email" value={formData.email} placeholder="Email" onChange={handleChange} required />
+          <input type="text" name="subject" value={formData.subject} placeholder="Subject" onChange={handleChange} />
+          <textarea name="message" value={formData.message} placeholder="Your Message" rows="5" required onChange={handleChange} />
+          <label htmlFor="humanCheck">What is 3 + 4?</label>
+          <input type="text" name="humanCheck" value={formData.humanCheck} placeholder="Your answer" onChange={handleChange} required />
           <button type="submit" className="submit-button">Send Message</button>
         </form>
       </div>

@@ -23,3 +23,25 @@ export const postPaymentToBackend = async (nonce, cart, form, onPlaceOrder) => {
     alert("Payment failed: " + (result.error || "Unknown error"));
   }
 };
+
+export async function postContactMessageToBackend(formData) {
+  try {
+    const url = `${BASE_URL}/contact`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Server error: ${errorText}`);
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Backend contact error:", error);
+    throw error;
+  }
+}

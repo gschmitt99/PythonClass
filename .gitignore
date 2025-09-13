@@ -1,2 +1,4 @@
 flask_env/
 *.swp
+node_modules/
+*.pyc
