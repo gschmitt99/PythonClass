@@ -70,7 +70,7 @@ const Contact = () => {
       <div className="contact-info-section">
         <h2>Or Contact Us Directly</h2>
         <p>
-          At S’m-ORR Sweets & Cafe, we’re passionate about bringing warmth and sweetness to every interaction,
+          At S’M-ORR Sweets & Cafe, we’re passionate about bringing warmth and sweetness to every interaction,
           whether it’s through our desserts, coffee, or friendly service. Our team is here to make your experience
           special, and we love hearing from our customers! Whether you have a question about our menu, want to
           share feedback, or need help with an order, please don’t hesitate to reach out. Every message is important
@@ -82,9 +82,9 @@ const Contact = () => {
           events. We’re excited to connect with you and bring a little more sweetness to your day at S’m-ORR Sweets & Cafe!  
         </p>
         <ul>
-          <li><strong>Phone:</strong> (832) 906-2919</li>
-          <li><strong>Address:</strong> 12503 Texas Pkwy Ste E, Stafford TX 77477</li>
-          <li><strong>Email:</strong> inquiries@yourdomain.com</li>
+          <li><strong>Phone:</strong>(832) 908-2091</li>
+          <li><strong>Address:</strong>1250 Texas Pkwy Ste E, Stafford TX 77477</li>
+          <li><strong>Email:</strong>inquiries@smorrsweets.com</li>
         </ul>
         <div className="social-icons">
           <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer">Facebook</a>

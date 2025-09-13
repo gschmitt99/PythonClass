@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <FaPhoneAlt />
-          <span>(555) 123-4567</span>
+          <span>(832) 908-2091</span>
         </div>
       </div>
 

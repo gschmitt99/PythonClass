@@ -59,6 +59,21 @@ const Content = ({ onAddToCart, cart, setActivePage }) => {
 
   return (
       <div>
+        <section className={styles.promoGrid}>
+          <div className={styles.promoItem}>
+            <h3>FRESH INGREDIENTS</h3>
+            <p>All of our products are made with the finest quality ingredients and guaranteed fresh.</p>
+          </div>
+          <div className={styles.promoItem}>
+            <h3>BAKED WITH LOVE</h3>
+            <p>We are passionate about baking. Each of our handmade items are carefully baked with love.</p>
+          </div>
+          <div className={styles.promoItem}>
+            <h3>OUR FAVORITE BAKERY PRODUCTS</h3>
+            <p>Check some of our best products and feel the great passion for food.</p>
+          </div>
+        </section>
+
         <h2 className={styles.sectionHeading}>
           {products?.length > 0
             ? `${products.length} items`
@@ -77,10 +92,6 @@ const Content = ({ onAddToCart, cart, setActivePage }) => {
               onClick={setSelectedItemId}
             />
           ))}
-        </div>
-
-        <div style={{ padding: "20px", textAlign: "center" }}>
-            <p>This is the Home content area.</p>
         </div>
       </div>
     );

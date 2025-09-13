@@ -20,7 +20,7 @@ const Header = ({ setActivePage, cart }) => {
         <FaMapMarkerAlt />
         <div>1250 Texas Pkwy Ste E, Stafford, TX 77477</div>
         <FaPhoneAlt />
-        <div>(555) 123-4567</div>
+        <div>(832) 908-2091</div>
         <FaClock />
         <div>Mon–Sat 10am–7pm | Closed Sunday</div>
       </div>

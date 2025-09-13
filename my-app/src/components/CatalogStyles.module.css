@@ -92,3 +92,25 @@
 .tileCard:hover {
   transform: scale(1.03);
 }
+
+.promoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  background-color: white; /* Match image background */
+  text-align: center;
+}
+
+.promoItem h3 {
+  color: #2a4d9b; /* Exact blue from image */
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.promoItem p {
+  font-size: 0.95rem;
+  font-weight: normal;
+  color: #333;
+}
