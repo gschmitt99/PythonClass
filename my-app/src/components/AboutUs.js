@@ -1,10 +1,12 @@
-import React from "react";
+import AboutUsContent from "./AboutUsContent";
+import AboutUsServices from "./AboutUsServices";
 
 const Content = () => {
     return (
-        <div style={{ padding: "20px", textAlign: "center" }}>
-            <p>This is the About Us content area.</p>
-        </div>
+      <>
+          <AboutUsContent />
+          <AboutUsServices />
+      </>
     );
 };
 
