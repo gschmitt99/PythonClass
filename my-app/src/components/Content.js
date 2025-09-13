@@ -19,7 +19,15 @@ const Content = ({
 }) => {
   return (
     <div>
-      {activePage === "Home" && <h1><Home /></h1>}
+      {activePage === "Home" &&
+        <h1>
+          <Home
+            onAddToCart={onAddToCart}
+            cart={cart}
+            setActivePage={setActivePage}
+          />
+        </h1>
+      }
       {activePage === "About" && <h1><AboutUs /></h1>}
       {activePage === "Shop" && 
         <h1>

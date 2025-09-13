@@ -8,7 +8,7 @@ const MockCatalogData = {
     return { message: toWrap };
   },
 
-  getCategoryData: (categoryId) => {
+  getProductsByCategory: (categoryId) => {
     const items = categoryItemsData[categoryId];
     return { message: items || [] };
   },

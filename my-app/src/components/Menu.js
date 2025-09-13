@@ -21,7 +21,7 @@ const Menu = ({ activePage, setActivePage, setSelectedCategory }) => {
   }, []);
 
   const handleItemClick = async(categoryId) => {
-    const details = await dataSource.getCategoryData(categoryId);
+    const details = await dataSource.getProductsByCategory(categoryId);
     setActivePage("Shop");
     setSelectedCategory(details);
   };

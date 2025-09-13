@@ -6,7 +6,7 @@ export class MockCatalogDataSource {
     return "test";
   }
 
-  async getCategoryData(categoryId) {
+  async getProductsByCategory(categoryId) {
     const response = MockCatalogData.getCategoryData(categoryId);
     console.log(response.Message);
     return response.message || [];

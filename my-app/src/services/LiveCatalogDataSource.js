@@ -1,4 +1,4 @@
-import { getItemData, getCategories, getCategoryData, getEnv } from "../services/catalogAPI";
+import { getItemData, getCategories, getProductsByCategory, getEnv } from "../services/catalogAPI";
 
 export class LiveCatalogDataSource {
 
@@ -10,8 +10,8 @@ export class LiveCatalogDataSource {
     return await getCategories();
   }
 
-  async getCategoryData(categoryId) {
-    return await getCategoryData(categoryId);
+  async getProductsByCategory(categoryId) {
+    return await getProductsByCategory(categoryId);
   }
 
   async getItemData(itemId) {

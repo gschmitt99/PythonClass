@@ -22,14 +22,14 @@ export const getCategories = async () => {
  * @param {string} categoryName - name or ID of the category
  * @returns {Promise<Object>} API response with items
  */
-export const getCategoryData = async (categoryName) => {
+export const getProductsByCategory = async (categoryName) => {
   try {
     const url = `${BASE_URL}/categorydata/${categoryName}`;
     const response = await fetch(url);
     const data = await response.json();
     return data.message;
   } catch (error) {
-    console.error("getCategoryData error:", error);
+    console.error("getProductsByCategory error:", error);
     return { items: [] };
   }
 };
