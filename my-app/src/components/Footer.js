@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaClock } from "react-icons/fa";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,6 +27,9 @@ const Footer = () => {
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
             <FaPhoneAlt />
             <span>(832) 908-2091</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <FaEnvelope />  <a href="mailto:inquiries@smorrsweets.com" style={{color: "white"}}>inquiries@smorrsweets.com</a>
           </div>
         </div>
 
