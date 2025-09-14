@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+
 import { postContactMessageToBackend } from "../services/paymentAPI";
 import "./Contact.css";
 
@@ -81,14 +83,52 @@ const Contact = () => {
           a cup of coffee. Follow us on social media to stay updated on our latest offerings, seasonal sweets, and special
           events. We’re excited to connect with you and bring a little more sweetness to your day at S’m-ORR Sweets & Cafe!  
         </p>
-        <ul>
-          <li><strong>Phone:</strong>(832) 908-2091</li>
-          <li><strong>Address:</strong>1250 Texas Pkwy Ste E, Stafford TX 77477</li>
-          <li><strong>Email:</strong>inquiries@smorrsweets.com</li>
+        <ul style={{ fontSize: "16pt" }}>
+          <li><FaPhoneAlt />  (832) 908-2091</li>
+          <li><FaMapMarkerAlt />  1250 Texas Pkwy STE E, Stafford TX 77477</li>
+          <li><FaEnvelope />  inquiries@smorrsweets.com</li>
         </ul>
         <div className="social-icons">
-          <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://instagram.com/yourpage" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center", marginTop: "8px" }}>
+              <a
+                href="https://www.facebook.com/profile.php?id=61561442950345"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "36px",
+                  height: "36px",
+                  borderRadius: "50%",
+                  backgroundColor: "white",
+                  color: "#1877F2",
+                  textDecoration: "none",
+                  fontSize: "18px",
+                }}
+              >
+                <i className="fab fa-facebook-f" />
+              </a>
+              <a
+                href="https://www.instagram.com/sm_orrsweets/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+                backgroundColor: "white",
+                color: "#c13584",
+                textDecoration: "none",
+                fontSize: "18px",
+                }}
+              >
+                <i className="fab fa-instagram" />
+              </a>
+          </div>
         </div>
       </div>
     </div>
