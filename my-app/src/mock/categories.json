@@ -12,10 +12,6 @@
     "name": "Burgers"
   },
   {
-    "pk": 9,
-    "name": "Cakes"
-  },
-  {
     "pk": 24,
     "name": "Cakes"
   },
@@ -32,11 +28,11 @@
     "name": "Coffee"
   },
   {
-    "pk": 8,
+    "pk": 23,
     "name": "Cookies"
   },
   {
-    "pk": 23,
+    "pk": 8,
     "name": "Cookies"
   },
   {
@@ -56,11 +52,11 @@
     "name": "Kool Aid Pickles"
   },
   {
-    "pk": 36,
+    "pk": 2,
     "name": "Pastries"
   },
   {
-    "pk": 2,
+    "pk": 36,
     "name": "Pastries"
   },
   {
