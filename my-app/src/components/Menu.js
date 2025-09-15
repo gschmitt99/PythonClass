@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createCatalogDataSource } from "../services/DataSourceFactory";
+import "./MenuStyles.css";
 
 const Menu = ({ activePage, setActivePage, setSelectedCategory }) => {
   const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
