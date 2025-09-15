@@ -6,7 +6,7 @@ import { createCatalogDataSource } from "../services/DataSourceFactory";
 // const applicationId = "sq0idp-hS_mnV5vahBjmL9cwR-gLQ";
 // this is the sandbox side
 // const applicationId = "sandbox-sq0idb-34agaTq2iqI355F57dbxKw";
-// const locationId = "LE6EZZN9R77KP";
+const locationId = "LE6EZZN9R77KP";
 
 const SquarePaymentForm = ({ onNonce }) => {
   const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
