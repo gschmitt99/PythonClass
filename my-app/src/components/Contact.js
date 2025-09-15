@@ -86,7 +86,7 @@ const Contact = () => {
         <ul style={{ fontSize: "16pt" }}>
           <li><FaPhoneAlt />  (832) 908-2091</li>
           <li><FaMapMarkerAlt />  1250 Texas Pkwy STE E, Stafford TX 77477</li>
-          <li><FaEnvelope />  inquiries@smorrsweets.com</li>
+          <li><FaEnvelope />  <a href="mailto:inquiries@smorrsweets.com"></a></li>
         </ul>
         <div className="social-icons">
             <div style={{ display: "flex", gap: "12px", justifyContent: "center", marginTop: "8px" }}>

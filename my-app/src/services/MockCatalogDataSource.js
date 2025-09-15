@@ -3,7 +3,7 @@ import MockCatalogData from "./mockCatalogData";
 export class MockCatalogDataSource {
 
   async getEnv() {
-    return "test";
+    return "prod";
   }
 
   async getProductsByCategory(categoryId) {

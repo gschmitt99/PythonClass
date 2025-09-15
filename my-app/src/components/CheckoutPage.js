@@ -237,7 +237,6 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
         </div>
       </form>
       {}
-      4111 1111 1111 1111
       <SquarePaymentForm onNonce={(nonce) => validateCart(nonce, checkoutCart, form, onPlaceOrder)} />
     </div>
   );
