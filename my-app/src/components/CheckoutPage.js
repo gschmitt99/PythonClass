@@ -5,15 +5,16 @@ import styles from "./ErrorStyles.module.css";
 
 const CheckoutPage = ({ cart, onPlaceOrder }) => {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
-  const checkoutCart = cart.map((entry) => ({
-    variation_pk: entry.variation.pk,
-    modifiers: entry.modifiers || [],
-    price: Number(Math.round(parseFloat(entry.price) * 100)),
-    tax: Number(Math.round(parseFloat(entry.tax || 0) * 100)),
-    quantity: String(entry.quantity || 1),
-    note: entry.note || ""
-  }));
-
+  const checkoutCart = {
+    items: cart.map((entry) => ({
+      variation_pk: entry.variation.pk,
+      modifiers: entry.modifiers || [],
+      price: Math.round(parseFloat(entry.price || 0) * 100),
+      quantity: String(entry.quantity || 1),
+      note: entry.note || ""
+    })),
+    tax: Math.round(parseFloat(cart.tax || 0) * 100)
+  };
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
