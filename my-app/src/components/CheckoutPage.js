@@ -9,6 +9,7 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
     variation_pk: entry.variation.pk,
     modifiers: entry.modifiers || [],
     price: Number(Math.round(parseFloat(entry.price) * 100)),
+    tax: Number(Math.round(parseFloat(entry.tax || 0) * 100)),
     quantity: String(entry.quantity || 1),
     note: entry.note || ""
   }));
