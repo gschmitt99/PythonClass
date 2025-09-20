@@ -4,6 +4,7 @@ import { postPaymentToBackend } from "../services/paymentAPI";
 import styles from "./ErrorStyles.module.css";
 
 const CheckoutPage = ({ cart, onPlaceOrder }) => {
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
   const checkoutCart = cart.map((entry) => ({
     variation_pk: entry.variation.pk,
     modifiers: entry.modifiers || [],
@@ -228,9 +229,24 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
             </li>
           ))}
         </ul>
-        <div style={{ fontWeight: "bold" }}>
-          Total: $
-          {cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0).toFixed(2)}
+
+        <div style={{ marginTop: "2em", fontWeight: "bold" }}>
+          <table style={{ width: "100%", maxWidth: "400px", borderCollapse: "collapse" }}>
+            <tbody>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0" }}>Subtotal:</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0" }}>${(subtotal).toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0" }}>Tax (8.25%):</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0" }}>${(cart.tax).toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0", fontWeight: "bold" }}>Total:</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0", fontWeight: "bold" }}>${(Math.round((subtotal + cart.tax)*100)/100).toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div style={{ margin: "1em 0" }}>
           <strong>Shipping:</strong> Local Pickup

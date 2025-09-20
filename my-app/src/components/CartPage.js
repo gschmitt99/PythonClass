@@ -1,6 +1,12 @@
 import React from "react";
 
-const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) => (
+const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) => {
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+  const taxRate = 0.0825; // 8.25% for Texas
+  const taxAmount = Math.round((subtotal * taxRate) * 100) / 100;
+  const totalWithTax = Math.round((subtotal + taxAmount) * 100) / 100;
+  cart.tax = taxAmount;
+  return (
   <div>
     <h2>Your Shopping Cart</h2>
     {cart.length === 0 ? (
@@ -56,10 +62,22 @@ const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) =
           ))}
         </ul>
         <div style={{ marginTop: "2em", fontWeight: "bold" }}>
-          Total: $
-          {cart
-            .reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0)
-            .toFixed(2)}
+          <table style={{ width: "100%", maxWidth: "400px", borderCollapse: "collapse" }}>
+            <tbody>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0" }}>Subtotal:</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0" }}>${(subtotal).toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0" }}>Tax (8.25%):</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0" }}>${(taxAmount).toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td style={{ textAlign: "left", padding: "0.5em 0", fontWeight: "bold" }}>Total:</td>
+                <td style={{ textAlign: "right", padding: "0.5em 0", fontWeight: "bold" }}>${(totalWithTax).toFixed(2)}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <button
           style={{ marginTop: "2em", fontWeight: "bold", fontSize: "1.1em" }}
@@ -71,5 +89,6 @@ const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) =
     )}
   </div>
 );
+};
 
 export default CartPage;
