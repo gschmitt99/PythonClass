@@ -1,11 +1,13 @@
 from datetime import datetime
 import json
+import logging
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from config.config import Configuration
-from dal.DataManager import get_web_menu_categories, get_cat_data, \
-   get_item_details
+#from dal.DataManager import get_web_menu_categories, get_cat_data, \
+#   get_item_details
 from dal.OrderValidator import OrderValidator
+from postmarker.core import PostmarkClient
 from square.square_module import Processor as Processor
 import yaml
 
@@ -13,13 +15,17 @@ is_prod = Configuration().get("env", "isprod", True)
 app = Flask(__name__, static_folder="build")
 CORS(app)
 
+logging.basicConfig(level=logging.INFO)
+
 # the access token was gotten from the application and more or less
 # sitting inside square.
 # EAAAl20dSP2xH0MFShJcIHXgVCYdVRl_BIaStzTDM3fW0pbUEV-bAtI4n1cX_zGO
+#    location_id="LGD3VW4ACB6R1"
 
+#EAAAl5TwTQXrtai8wrCcgSOEMIXGGtqgeMp4G0oDXMg2LNCb1QBj7u91ScLXH4zc
 processor = Processor(
-    access_token="EAAAl20dSP2xH0MFShJcIHXgVCYdVRl_BIaStzTDM3fW0pbUEV-bAtI4n1cX_zGO",
-    location_id="LGD3VW4ACB6R1"
+    access_token="EAAAl5TwTQXrtai8wrCcgSOEMIXGGtqgeMp4G0oDXMg2LNCb1QBj7u91ScLXH4zc",
+    location_id="LE6EZZN9R77KP"
 )
 
 def calculate_amount(order):
@@ -39,57 +45,76 @@ def calculate_amount(order):
 #        print("Order Creation failure:", e)
 #        return jsonify({"error": "Order Creation failed", "details": str(e)}), 500
 
+def send_emails(email_table, customer_info):
+    client = PostmarkClient(server_token='475f6e94-6c5f-4397-8718-ed891b3454c8')
+    client.emails.send(
+        From='orders@smorrsweets.com',
+        To='paula@smorrsweets.com',
+        Subject='Order Confirmation',
+        HtmlBody=email_table,
+        TextBody='Your order is confirmed!',
+        MessageStream='outbound'
+    )
+    client.emails.send(
+        From='orders@smorrsweets.com',
+        To=customer_info['email'],
+        Subject='Order Confirmation',
+        HtmlBody=email_table,
+        TextBody='Your order is confirmed!',
+        MessageStream='outbound'
+    )
 
 @app.route("/process-payment", methods=["POST"])
 def process_payment():
     data = request.get_json()
-    print(data)
+    logging.info("received /process-payment")
+    logging.info(data)
     validator = OrderValidator()
-    price_match, total_price, validated_data = validator.validate_order(data)
+    logging.info(f"order data before validation: {data}")
+    price_match, total_price, calculated_tax, validated_data = validator.validate_order(data)
+    logging.info(f"order data after validation: {data}")
     if price_match:
-        result = processor.create_order(validated_data)
+        result, customer_info = processor.create_order(validated_data)
         nonce = data.get("nonce")
 
         try:
-            print("Sending to processor:", {"nonce": nonce, "amount": total_price})
-            print("Order Result contains:")
-            print(result)
-            result = processor.process_payment(nonce, total_price, result['order']['id'])
+            logging.info("Sending to processor:", {"nonce": nonce, "amount": total_price})
+            logging.info(f"Order Result contains: {result}")
+            if 'order' in result:
+                email_table = OrderValidator.format_email_html(result, customer_info)
 
-            #kitchen_ticket = {
-            #    "order_id": result["payment"]["order_id"],
-            #    "amount": result["payment"]["amount_money"]["amount"],
-            #    "timestamp": result["payment"]["created_at"],
-            #    "card_brand": result["payment"]["card_details"]["card"]["card_brand"]
-            #}
-
-            #return jsonify({"success": True, "kitchen": kitchen_ticket})
-            return jsonify({"success": True})
+                result = processor.process_payment(nonce, total_price+calculated_tax, result['order']['id'])
+                send_emails(email_table, customer_info)
+                logging.info("process-payemnt: success")
+                logging.info(f"process_payment result: {result}")
+                return jsonify({"success": True})
+            else:
+                return jsonify({"success": False})
 
         except Exception as e:
-            print("Payment failure:", e)
+            logging.info("Payment failure:", e)
             return jsonify({"error": "Payment failed", "details": str(e)}), 500
 
-@app.route('/item/<item_pk>', methods=['GET'])
-def get_item_dets(item_pk):
-   retval = {"message": get_item_details(item_pk, is_prod).to_dict()}
-   return json.dumps(retval, default=str)
+#@app.route('/item/<item_pk>', methods=['GET'])
+#def get_item_dets(item_pk):
+#   retval = {"message": get_item_details(item_pk, is_prod).to_dict()}
+#   return json.dumps(retval, default=str)
 
-@app.route('/categorydata/<category_id>', methods=['GET'])
-def get_category_data(category_id):
-   retval = {"message": get_cat_data(category_id, is_prod)}
-   return json.dumps(retval)
+#@app.route('/categorydata/<category_id>', methods=['GET'])
+#def get_category_data(category_id):
+#   retval = {"message": get_cat_data(category_id, is_prod)}
+#   return json.dumps(retval)
 
-@app.route("/data")
-def get_data():
-   retval = {"message": get_web_menu_categories(is_prod)}
-   return json.dumps(retval)
+#@app.route("/data")
+#def get_data():
+#   retval = {"message": get_web_menu_categories(is_prod)}
+#   return json.dumps(retval)
 
 # just showing a second hook
-@app.route("/data1")
-def get_data1():
-    retval = {"message": "a test1"}
-    return json.dumps(retval)
+#@app.route("/data1")
+#def get_data1():
+#    retval = {"message": "a test1"}
+#    return json.dumps(retval)
 
 @app.route("/env")
 def get_env():
