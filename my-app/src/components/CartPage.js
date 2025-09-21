@@ -19,6 +19,8 @@ const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) =
               width: "100%",
               borderCollapse: "collapse",
               marginBottom: "2em",
+              fontSize: "1rem",
+              fontFamily: "Arial, sans-serif"
             }}
             border="1"
             cellPadding="6"
@@ -63,14 +65,21 @@ const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) =
                         min={1}
                         value={quantity}
                         onChange={e => onUpdateCartItem(idx, parseInt(e.target.value, 10))}
-                        style={{ width: "40px", fontSize: "2rem" }}
+                        style={{
+                          width: "60px",
+                          fontSize: "2rem",
+                          padding: "4px 6px",
+                          textAlign: "center",
+                          borderRadius: "4px",
+                          border: "1px solid #ccc"
+                        }}
                       />
                     </td>
                     <td>${(extendedPrice / 100).toFixed(2)}</td>
                     <td>
                       <button
                         onClick={() => onDeleteCartItem(idx)}
-                        style={{ fontSize: "0.75rem", padding: "2px 6px", fontSize: "2rem" }}
+                        style={{ fontSize: "2rem", padding: "2px 6px" }}
                       >
                         Delete
                       </button>
@@ -78,28 +87,22 @@ const CartPage = ({ cart, onUpdateCartItem, onDeleteCartItem, setActivePage }) =
                   </tr>
                 );
               })}
+
+              {/* Summary rows */}
+              <tr>
+                <td colSpan="4" style={{ textAlign: "right", fontWeight: "bold" }}>Subtotal:</td>
+                <td colSpan="2" style={{ textAlign: "right" }}>${subtotal.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td colSpan="4" style={{ textAlign: "right", fontWeight: "bold" }}>Tax (8.25%):</td>
+                <td colSpan="2" style={{ textAlign: "right" }}>${taxAmount.toFixed(2)}</td>
+              </tr>
+              <tr>
+                <td colSpan="4" style={{ textAlign: "right", fontWeight: "bold" }}>Total:</td>
+                <td colSpan="2" style={{ textAlign: "right", fontWeight: "bold" }}>${totalWithTax.toFixed(2)}</td>
+              </tr>
             </tbody>
           </table>
-
-          <div style={{ fontWeight: "bold", maxWidth: "400px", margin: "0 auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse" }}>
-              <tbody>
-                <tr>
-                  <td style={{ textAlign: "left", padding: "0.5em 0" }}>Subtotal:</td>
-                  <td style={{ textAlign: "right", padding: "0.5em 0" }}>${subtotal.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td style={{ textAlign: "left", padding: "0.5em 0" }}>Tax (8.25%):</td>
-                  <td style={{ textAlign: "right", padding: "0.5em 0" }}>${taxAmount.toFixed(2)}</td>
-                </tr>
-                <tr>
-                  <td style={{ textAlign: "left", padding: "0.5em 0", fontWeight: "bold" }}>Total:</td>
-                  <td style={{ textAlign: "right", padding: "0.5em 0", fontWeight: "bold" }}>${totalWithTax.toFixed(2)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
           <button
             style={{ marginTop: "2em", fontWeight: "bold", fontSize: "1.1em" }}
             onClick={() => setActivePage("Checkout")}
