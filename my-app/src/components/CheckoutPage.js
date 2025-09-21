@@ -88,128 +88,137 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "0 auto" }}>
+    <div style={{ maxWidth: 600, margin: "0 auto", fontSize: "1rem", lineHeight: "1.2" }}>
       <h2>Checkout</h2>
       <form>
-        <div>
-          <label>
-            First Name*<br />
-            <input
-              name="firstName"
-              value={form.firstName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.firstName ? styles.inputError : ""}
-              required
-            />
-            {errors.firstName && <div className={styles.errorMessage}>{errors.firstName}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Last Name*<br />
-            <input
-              name="lastName"
-              value={form.lastName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.lastName ? styles.inputError : ""}
-              required
-            />
-            {errors.lastName && <div className={styles.errorMessage}>{errors.lastName}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Company Name (optional)<br />
-            <input name="company" value={form.company} onChange={handleChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Street Address*<br />
-            <input
-              name="street"
-              value={form.street}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.street ? styles.inputError : ""}
-              required placeholder="House number and street name"
-            />
-            {errors.street && <div className={styles.errorMessage}>{errors.street}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Apartment, suite, unit, etc (optional)<br />
-            <input name="apt" value={form.apt} onChange={handleChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Town/City*<br />
-            <input
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.city ? styles.inputError : ""}
-              required
-            />
-            {errors.city && <div className={styles.errorMessage}>{errors.city}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            State*<br />
-            <select name="state" value={form.state} onChange={handleChange} required>
-              <option value="TX">Texas</option>
-              {/* Add more states if needed */}
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>
-            Zip Code*<br />
-            <input
-              name="zip"
-              value={form.zip}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.zip ? styles.inputError : ""}
-              required
-            />
-            {errors.zip && <div className={styles.errorMessage}>{errors.zip}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Phone*<br />
-            <input
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.phone ? styles.inputError : ""}
-              required
-            />
-            {errors.phone && <div className={styles.errorMessage}>{errors.phone}</div>}
-          </label>
-        </div>
-        <div>
-          <label>
-            Email*<br />
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.email ? styles.inputError : ""}
-              required
-            />
-            {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
-          </label>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1rem"
+          }}
+        >
+          <div>
+            <label>
+              First Name*<br />
+              <input
+                name="firstName"
+                value={form.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.firstName ? styles.inputError : ""}
+                required
+              />
+              {errors.firstName && <div className={styles.errorMessage}>{errors.firstName}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              Last Name*<br />
+              <input
+                name="lastName"
+                value={form.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.lastName ? styles.inputError : ""}
+                required
+              />
+              {errors.lastName && <div className={styles.errorMessage}>{errors.lastName}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              Company Name (optional)<br />
+              <input name="company" value={form.company} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Street Address*<br />
+              <input
+                name="street"
+                value={form.street}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.street ? styles.inputError : ""}
+                required
+                placeholder="House number and street name"
+              />
+              {errors.street && <div className={styles.errorMessage}>{errors.street}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              Apartment, suite, unit, etc (optional)<br />
+              <input name="apt" value={form.apt} onChange={handleChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Town/City*<br />
+              <input
+                name="city"
+                value={form.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.city ? styles.inputError : ""}
+                required
+              />
+              {errors.city && <div className={styles.errorMessage}>{errors.city}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              State*<br />
+              <select name="state" value={form.state} onChange={handleChange} required>
+                <option value="TX">Texas</option>
+                {/* Add more states if needed */}
+              </select>
+            </label>
+          </div>
+          <div>
+            <label>
+              Zip Code*<br />
+              <input
+                name="zip"
+                value={form.zip}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.zip ? styles.inputError : ""}
+                required
+              />
+              {errors.zip && <div className={styles.errorMessage}>{errors.zip}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              Phone*<br />
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.phone ? styles.inputError : ""}
+                required
+              />
+              {errors.phone && <div className={styles.errorMessage}>{errors.phone}</div>}
+            </label>
+          </div>
+          <div>
+            <label>
+              Email*<br />
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={errors.email ? styles.inputError : ""}
+                required
+              />
+              {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
+            </label>
+          </div>
         </div>
         <hr />
         <h3>Your Order</h3>
