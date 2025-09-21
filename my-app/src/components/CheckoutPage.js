@@ -213,24 +213,82 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
         </div>
         <hr />
         <h3>Your Order</h3>
-        <ul>
-          {cart.map((item, idx) => (
-            <li key={idx}>
-              <strong>{item.item.name}</strong> — {item.variation.name}
-              {item.modifiers.length > 0 && (
-                <span>
-                  {" "}with {item.modifiers.map(mod => mod.name).join(", ")}
-                </span>
-              )}
-              {" "}x {item.quantity || 1} = ${(item.price * (item.quantity || 1)).toFixed(2)}
-              {item.notes && (
-                <div>
-                  <em>Notes:</em> {item.notes}
-                </div>
-              )}
-            </li>
-          ))}
-        </ul>
+        <table style={{ borderCollapse: 'collapse', fontFamily: 'Arial, sans-serif' }} border="1" cellPadding="6" cellSpacing="0">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Variation</th>
+              <th>Modifier</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item, idx) => {
+              const basePrice = item.price || 0;
+              const quantity = item.quantity || 1;
+              const modifiers = item.modifiers || [];
+              const modifierTotal = modifiers.reduce((sum, mod) => sum + (mod.price || 0), 0);
+              const subtotal = (basePrice + modifierTotal) * quantity;
+
+              return (
+                <React.Fragment key={idx}>
+                  <tr>
+                    <td>{item.item.name}</td>
+                    <td>{item.variation.name}</td>
+                    <td>-</td>
+                    <td>${(basePrice)}</td>
+                  </tr>
+                  {modifiers.map((mod, mIdx) => (
+                    <tr key={`mod-${idx}-${mIdx}`}>
+                      <td></td>
+                      <td></td>
+                      <td>{mod.name}</td>
+                      <td>${(mod.price)}</td>
+                    </tr>
+                  ))}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td><strong>Subtotal</strong></td>
+                    <td><strong>${(subtotal)}</strong></td>
+                  </tr>
+                </React.Fragment>
+              );
+            })}
+
+            {/* Tax and total rows */}
+            <tr>
+              <td></td>
+              <td></td>
+              <td><strong>Tax (8.25%)</strong></td>
+              <td>
+                <strong>
+                  ${((cart.reduce((sum, item) => {
+                    const base = item.price || 0;
+                    const mods = item.modifiers || [];
+                    const modTotal = mods.reduce((s, m) => s + (m.price || 0), 0);
+                    return sum + (base + modTotal) * (item.quantity || 1);
+                  }, 0) * 0.0825)).toFixed(2)}
+                </strong>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><strong>Total</strong></td>
+              <td>
+                <strong>
+                  ${((cart.reduce((sum, item) => {
+                    const base = item.price || 0;
+                    const mods = item.modifiers || [];
+                    const modTotal = mods.reduce((s, m) => s + (m.price || 0), 0);
+                    return sum + (base + modTotal) * (item.quantity || 1);
+                  }, 0) * 1.0825)).toFixed(2)}
+                </strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
         <div style={{ marginTop: "2em", fontWeight: "bold" }}>
           <table style={{ width: "100%", maxWidth: "400px", borderCollapse: "collapse" }}>
