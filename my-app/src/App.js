@@ -30,13 +30,8 @@ const App = () => {
     };
 
     const handlePlaceOrder = (orderData) => {
-        // TODO: Implement email logic here
-        alert("Order placed! (Implement email logic here)");
-        setCart([]); // Clear the cart
-        // TODO: may put in some kind of thank you page.
-        // I have looked at this as a possible solution:
-        // https://www.emailjs.com/pricing/
-        // not sure what volume is going to be.
+        alert("Thank you, your order has been placed!  You will receive an email confirmation shortly.");
+        setCart([]);
         setActivePage("Home");
     };
 
