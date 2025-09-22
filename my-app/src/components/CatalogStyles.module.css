@@ -43,10 +43,9 @@
 
 .itemDetailsContainer {
   display: flex;
-  justify-content: space-between;
-  gap: 32px;
-  margin: 0 auto;
-  max-width: 800px;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
 }
 
 .itemLeft {
@@ -69,7 +68,7 @@
   max-width: 300px;      /* optional cap */
   flex-shrink: 0;
   min-height: 100px;
-  border: 1px solid red;
+  border: 1px solid black;
   pointer-events: none; /* disable interactions */
 }
 
