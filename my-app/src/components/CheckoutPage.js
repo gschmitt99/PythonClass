@@ -11,7 +11,7 @@ const CheckoutPage = ({ cart, onPlaceOrder }) => {
       modifiers: entry.modifiers || [],
       price: Math.round(parseFloat(entry.price || 0) * 100),
       quantity: String(entry.quantity || 1),
-      note: entry.note || ""
+      notes: entry.note || ""
     })),
     tax: Math.round(parseFloat(cart.tax || 0) * 100)
   };
