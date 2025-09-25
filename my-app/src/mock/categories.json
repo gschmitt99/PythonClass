@@ -1,90 +1,66 @@
 [
   {
-    "pk": 10,
+    "pk": 434,
     "name": "Breakfast"
   },
   {
-    "pk": 26,
-    "name": "Breakfast"
-  },
-  {
-    "pk": 18,
+    "pk": 441,
     "name": "Burgers"
   },
   {
-    "pk": 24,
+    "pk": 433,
     "name": "Cakes"
   },
   {
-    "pk": 28,
+    "pk": 447,
     "name": "Chicken Strip Burgers"
   },
   {
-    "pk": 25,
-    "name": "Chicken Wings"
-  },
-  {
-    "pk": 13,
+    "pk": 437,
     "name": "Coffee"
   },
   {
-    "pk": 23,
+    "pk": 432,
     "name": "Cookies"
   },
   {
-    "pk": 8,
-    "name": "Cookies"
-  },
-  {
-    "pk": 14,
+    "pk": 438,
     "name": "Desserts"
   },
   {
-    "pk": 12,
+    "pk": 436,
     "name": "Drinks"
   },
   {
-    "pk": 15,
+    "pk": 439,
     "name": "Ice Cream"
   },
   {
-    "pk": 20,
+    "pk": 443,
     "name": "Kool Aid Pickles"
   },
   {
-    "pk": 2,
+    "pk": 427,
     "name": "Pastries"
   },
   {
-    "pk": 36,
-    "name": "Pastries"
-  },
-  {
-    "pk": 39,
+    "pk": 450,
     "name": "Salads"
   },
   {
-    "pk": 1,
+    "pk": 426,
     "name": "Sandwiches"
   },
   {
-    "pk": 41,
-    "name": "Side Dishes"
-  },
-  {
-    "pk": 6,
+    "pk": 430,
     "name": "Sides"
   },
   {
-    "pk": 16,
+    "pk": 440,
     "name": "Split"
   },
   {
-    "pk": 22,
-    "name": "Uncategorized"
-  },
-  {
-    "pk": 4,
+    "pk": 428,
     "name": "Wings"
   }
 ]
