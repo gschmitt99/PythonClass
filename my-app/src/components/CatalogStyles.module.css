@@ -113,3 +113,20 @@
   font-weight: normal;
   color: #333;
 }
+
+.deliverySection {
+  padding: 40px 0;
+}
+.deliverySection h2,
+.deliverySection p,
+.deliverySection a {
+  text-align: center;
+}
+.deliverySection a {
+  background-color: #e60000;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}

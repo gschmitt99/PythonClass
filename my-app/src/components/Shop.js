@@ -8,12 +8,34 @@ const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
   const [selectedItemId, setSelectedItemId] = useState(null);
   const [itemDetails, setItemDetails] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [fallbackCategory, setFallbackCategory] = useState(null);
 
   const itemsPerPage = 9;
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const pagedItems = selectedCategory?.slice(startIndex, startIndex + itemsPerPage);
 
   const dataSource = createCatalogDataSource(process.env.REACT_APP_ENV);
+
+  // If no category is selected, pick a random one
+  useEffect(() => {
+    if (selectedCategory) {
+      return;
+    }
+
+    const fetchRandomCategory = async () => {
+      const categories = await dataSource.getCategories();
+      if (!categories || categories.length === 0) return;
+
+      const random = Math.floor(Math.random() * categories.length);
+      const categoryItems = await dataSource.getProductsByCategory(categories[random].pk);
+      categoryItems.categoryName = categories[random].name;
+      setFallbackCategory(categoryItems);
+    };
+
+    fetchRandomCategory();
+  }, []);
+
+  const effectiveCategory = selectedCategory || fallbackCategory;
+  const pagedItems = effectiveCategory?.slice(startIndex, startIndex + itemsPerPage);
 
   // Fetch item details when an item is selected
   useEffect(() => {
@@ -27,11 +49,12 @@ const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
     fetchDetails();
   }, [selectedItemId]);
 
+  // Reset state when category changes
   useEffect(() => {
     setSelectedItemId(null);
     setItemDetails(null);
     setCurrentPage(1);
-  }, [selectedCategory]);
+  }, [effectiveCategory]);
 
   const handleBack = () => {
     setSelectedItemId(null);
@@ -49,30 +72,31 @@ const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
       />
     );
   }
-
   return (
     <div>
       <h2 className={styles.sectionHeading}>
-        {selectedCategory?.length > 0
-          ? `${selectedCategory.length} items`
+        {effectiveCategory?.length > 0
+          ? `${effectiveCategory.categoryName}: ${effectiveCategory.length} total items`
           : "No items available"}
       </h2>
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "20px",
-        padding: "20px"
-      }}>
-        {
-        pagedItems.map((item) => (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "20px",
+          padding: "20px"
+        }}
+      >
+        {pagedItems?.map((item) => (
           <MenuItemTile
+            key={item.id}
             item={item}
             onClick={setSelectedItemId}
           />
         ))}
       </div>
 
-      {selectedCategory?.length > itemsPerPage && (
+      {effectiveCategory?.length > itemsPerPage && (
         <div style={{ marginTop: "20px", textAlign: "center" }}>
           <button
             disabled={currentPage === 1}
@@ -82,7 +106,7 @@ const Shop = ({ selectedCategory, onAddToCart, cart, setActivePage }) => {
           </button>
           <span style={{ margin: "0 10px" }}>Page {currentPage}</span>
           <button
-            disabled={startIndex + itemsPerPage >= selectedCategory.length}
+            disabled={startIndex + itemsPerPage >= effectiveCategory.length}
             onClick={() => setCurrentPage(currentPage + 1)}
           >
             Next

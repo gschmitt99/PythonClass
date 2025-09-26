@@ -21,8 +21,9 @@ const Menu = ({ activePage, setActivePage, setSelectedCategory }) => {
     fetchMenuItems();
   }, []);
 
-  const handleItemClick = async(categoryId) => {
+  const handleItemClick = async(categoryId, categoryName) => {
     const details = await dataSource.getProductsByCategory(categoryId);
+    details.categoryName = categoryName;
     setActivePage("Shop");
     setSelectedCategory(details);
   };
@@ -64,14 +65,14 @@ const Menu = ({ activePage, setActivePage, setSelectedCategory }) => {
 
             <span
               className={`dropdown-trigger ${isMenuActive ? "active" : ""}`}
-              onClick={() => setActivePage("Menu")}
+              onClick={() => setActivePage("Shop")}
             >
               Shop <span className="dropdown-arrow">▼</span>
             </span>
             {showDropdown && (
               <ul className="dropdown-menu">
                 {menuItems.map(({ pk, name }) => (
-                  <li key={pk} onClick={() => handleItemClick(pk)}>
+                  <li key={pk} onClick={() => handleItemClick(pk, name)}>
                     {name}
                     </li>
                   ))}
