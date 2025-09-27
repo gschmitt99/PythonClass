@@ -4,7 +4,7 @@ const AboutUsServices = () => {
     const serviceData = [
         {
             title: "Bakery",
-            icon: "🍞", // You can swap this with an actual SVG or image
+            icon: "🍞",
             description:
                 "We have all your favorite traditional bread, 7 days a week! Choose from a rich variety of cookies, pastries and cakes."
         },
