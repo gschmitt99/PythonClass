@@ -56,70 +56,114 @@ const Content = ({ onAddToCart, cart, setActivePage }) => {
     );
   }
 
+
   return (
-      <div>
-        <section className={styles.promoGrid}>
-          <div className={styles.promoItem}>
-            <h3>FRESH INGREDIENTS</h3>
-            <p>All of our products are made with the finest quality ingredients and guaranteed fresh.</p>
-          </div>
-          <div className={styles.promoItem}>
-            <h3>BAKED WITH LOVE</h3>
-            <p>We are passionate about baking. Each of our handmade items are carefully baked with love.</p>
-          </div>
-          <div className={styles.promoItem}>
-            <h3>OUR FAVORITE BAKERY PRODUCTS</h3>
-            <p>Check some of our best products and feel the great passion for food.</p>
-          </div>
-        </section>
-
-        {/* Delivery Section */}
-        <section className={styles.deliverySection}>
-          <h2 style={{ textAlign: "center", marginTop: "40px" }}>Delivery</h2>
-          <p style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 20px" }}>
-            Craving our wings, burgers, or sweets? Get them delivered straight to your door.
-          </p>
-          <div style={{ textAlign: "center" }}>
-            <a
-              href="https://www.doordash.com/store/s'm-orr-sweets-&-cafe-stafford-29869948/38221949/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-block",
-                padding: "12px 24px",
-                backgroundColor: "#e60000",
-                color: "#fff",
-                textDecoration: "none",
-                borderRadius: "6px",
-                fontWeight: "bold"
-              }}
-            >
-              Order on DoorDash
-            </a>
-          </div>
-        </section>
-
-        <h2 className={styles.sectionHeading}>
-          {products?.length > 0
-            ? `${categoryName}: ${products.length} total items`
-            : "No items available"}
-        </h2>
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-          padding: "20px"
-        }}>
-          {
-          products.map((item) => (
-            <MenuItemTile
-              item={item}
-              onClick={setSelectedItemId}
-            />
-          ))}
+    <div>
+      <section className={styles.promoGrid}>
+        <div className={styles.promoItem}>
+          <h3>FRESH INGREDIENTS</h3>
+          <p>All of our products are made with the finest quality ingredients and guaranteed fresh.</p>
         </div>
+        <div className={styles.promoItem}>
+          <h3>BAKED WITH LOVE</h3>
+          <p>We are passionate about baking. Each of our handmade items are carefully baked with love.</p>
+        </div>
+        <div className={styles.promoItem}>
+          <h3>OUR FAVORITE BAKERY PRODUCTS</h3>
+          <p>Check some of our best products and feel the great passion for food.</p>
+        </div>
+      </section>
+
+{/* Delivery Section with Left and Right Image Boxes */}
+<div style={{
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+  marginTop: "40px",
+  marginBottom: "40px",
+  padding: "0 40px"  // optional horizontal padding
+}}>
+  {/* Left Image Box */}
+  <div style={{
+    backgroundColor: "#f9f9f9"
+  }}>
+    <img
+      src="/imagery/WeeklySpecials.png"
+      alt=""
+      style={{
+        height: "550px",
+        width: "auto",
+        display: "block"
+      }}
+    />
+  </div>
+
+  {/* Delivery Text and Button */}
+  <section style={{
+    maxWidth: "300px",
+    textAlign: "center",
+    margin: "0 auto"
+  }}>
+    <h2 style={{ fontSize: "16px" }}>Delivery</h2>
+    <p style={{ fontSize: "16px", color: "#555" }}>
+      Craving our wings, burgers, or sweets? Get them delivered straight to your door.
+    </p>
+    <a
+      href="https://www.doordash.com/store/s'm-orr-sweets-&-cafe-stafford-29869948/38221949/"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "inline-block",
+        padding: "0px 24px",
+        backgroundColor: "#e60000",
+        color: "#fff",
+        textDecoration: "none",
+        borderRadius: "6px",
+        fontWeight: "bold",
+        marginTop: "20px"
+      }}
+    >
+      Order on DoorDash
+    </a>
+  </section>
+
+  {/* Right Image Box */}
+  <div style={{
+    padding: "10px",
+    backgroundColor: "#f9f9f9"
+  }}>
+    <img
+      src="/imagery/DJEFP34KKLMXUTHBUG2ORRWZ.jpg"
+      alt=""
+      style={{
+        height: "550px",
+        width: "auto",
+        display: "block"
+      }}
+    />
+  </div>
+</div>
+
+      <h2 className={styles.sectionHeading}>
+        {products?.length > 0
+          ? `${categoryName}: ${products.length} total items`
+          : "No items available"}
+      </h2>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: "20px",
+        padding: "20px"
+      }}>
+        {products.map((item) => (
+          <MenuItemTile
+            item={item}
+            onClick={setSelectedItemId}
+          />
+        ))}
       </div>
-    );
+    </div>
+  );
 };
 
 export default Content;
