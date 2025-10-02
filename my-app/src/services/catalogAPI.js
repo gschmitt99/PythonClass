@@ -1,7 +1,7 @@
 //const BASE_URL = "https://phoenix2025:5000";
 // const BASE_URL = "http://localhost:5000";
 //const BASE_URL = "http://129.212.188.155:5000";
-const BASE_URL = "https://beta.smorrsweets.com/api";
+const BASE_URL = "https://www.smorrsweets.com/api";
 
 /**
  * Fetch category names and ids

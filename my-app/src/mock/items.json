@@ -9335,7 +9335,7 @@
   "19124": {
     "pk": "19124",
     "id": "DP6ESKA62K656UYMS2TTB6SI",
-    "name": "20 piece wings",
+    "name": "20 piece wings -- pick only two flavors",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "21.9900",
     "variations": [
@@ -9697,7 +9697,7 @@
   "19162": {
     "pk": "19162",
     "id": "FNEAEFSAYLGU3SBUMHSJTMTC",
-    "name": "15 piece wings",
+    "name": "15 piece wings -- pick only two flavors",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "16.9900",
     "variations": [
@@ -10059,7 +10059,7 @@
   "19166": {
     "pk": "19166",
     "id": "CLEV6Q622PW752C4YBJQHSCB",
-    "name": "10 piece wings",
+    "name": "10 piece wings -- pick only two flavors",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "10.9900",
     "variations": [
@@ -10421,7 +10421,7 @@
   "19176": {
     "pk": "19176",
     "id": "L2SIA56OGKUGOP2WHVEYCGFW",
-    "name": "50 piece wings",
+    "name": "50 piece wings -- pick only two flavors",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "54.9900",
     "variations": [

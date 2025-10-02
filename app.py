@@ -57,6 +57,14 @@ def send_emails(email_table, customer_info):
     )
     client.emails.send(
         From='orders@smorrsweets.com',
+        To='gschmitt99@gmail.com',
+        Subject='Order Confirmation',
+        HtmlBody=email_table,
+        TextBody='Your order is confirmed!',
+        MessageStream='outbound'
+    )
+    client.emails.send(
+        From='orders@smorrsweets.com',
         To=customer_info['email'],
         Subject='Order Confirmation',
         HtmlBody=email_table,
@@ -71,7 +79,7 @@ def process_payment():
     logging.info(data)
     validator = OrderValidator()
     logging.info(f"order data before validation: {data}")
-    price_match, total_price, calculated_tax, validated_data = validator.validate_order(data)
+    price_match, total_price, calculated_tax, validated_data, notes = validator.validate_order(data)
     logging.info(f"order data after validation: {data}")
     if price_match:
         result, customer_info = processor.create_order(validated_data)
@@ -81,7 +89,7 @@ def process_payment():
             logging.info("Sending to processor:", {"nonce": nonce, "amount": total_price})
             logging.info(f"Order Result contains: {result}")
             if 'order' in result:
-                email_table = OrderValidator.format_email_html(result, customer_info)
+                email_table = OrderValidator.format_email_html(result, customer_info, notes)
 
                 result = processor.process_payment(nonce, total_price+calculated_tax, result['order']['id'])
                 send_emails(email_table, customer_info)

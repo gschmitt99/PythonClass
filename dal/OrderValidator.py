@@ -7,6 +7,7 @@ class OrderValidator:
         self.data_store = DataStore("/home/gschmitt/PythonClass/dal/item_variation.dat", "/home/gschmitt/PythonClass/dal/modifier_data.dat")
 
     def validate_order(self, order_data):
+        notes = ""
         cart = order_data.get("order", {}).get("cart", [])
         total_price = 0
         total_server_price = 0
@@ -22,6 +23,7 @@ class OrderValidator:
 
             # Update the cart item's price
             item["server_price"] = round(total_price, 2)
+            notes = notes + item["notes"] + "<br />"
 
         tax_rate = 0.0825
         server_tax = int(round(round(total_server_price * tax_rate * 100) / 100.0))
@@ -32,10 +34,10 @@ class OrderValidator:
             price_match = False
             logging.info("price mismatch")
 
-        return price_match, total_server_price, server_tax, order_data
+        return price_match, total_server_price, server_tax, order_data, notes
 
     @staticmethod
-    def format_email_html(order_data, customer_info):
+    def format_email_html(order_data, customer_info, notes):
         lines = order_data['order']['line_items']
         html = f"""
         Hello {customer_info['name']},<br />
@@ -82,6 +84,8 @@ class OrderValidator:
         html += f"<tr><td></td><td></td><td><strong>Total</strong></td><td><strong>${final_total / 100:.2f}</strong></td></tr>"
 
         html += "</tbody></table>"
+
+        html += notes
 
         return html
 
