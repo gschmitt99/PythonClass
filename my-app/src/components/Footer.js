@@ -100,7 +100,7 @@ const Footer = () => {
         fontSize: "0.85rem"
       }}>
         <p style={{ margin: 0 }}>
-          Copyright © {currentYear} S’M-ORR Sweets &amp; Cafe. Made with ❤ by Schmittware Sotware.
+          Copyright © {currentYear} S’M-ORR Sweets &amp; Cafe. Made with ❤ by Schmittware Software.
         </p>
       </div>
     </>
