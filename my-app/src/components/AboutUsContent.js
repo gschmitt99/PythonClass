@@ -31,7 +31,7 @@ const AboutUsContent = () => {
 
                 <div style={{ flex: "1 1 400px", textAlign: "center" }}>
                     <img
-                        src="/path-to-your-image.jpg"
+                        src="imagery/aboutus.jpg"
                         alt="Baker placing bread in oven"
                         style={{ width: "100%", borderRadius: "8px", boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
                     />

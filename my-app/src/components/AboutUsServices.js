@@ -6,7 +6,7 @@ const AboutUsServices = () => {
             title: "Bakery",
             icon: "🍞",
             description:
-                "We have all your favorite traditional bread, 7 days a week! Choose from a rich variety of cookies, pastries and cakes."
+                "Choose from a rich variety of cookies, pastries, and cakes."
         },
         {
             title: "Cakes",
