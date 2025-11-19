@@ -1,66 +1,70 @@
 [
   {
-    "pk": 509,
+    "pk": 472,
     "name": "Breakfast"
   },
   {
-    "pk": 516,
+    "pk": 479,
     "name": "Burgers"
   },
   {
-    "pk": 508,
+    "pk": 471,
     "name": "Cakes"
   },
   {
-    "pk": 522,
+    "pk": 485,
     "name": "Chicken Strip Burgers"
   },
   {
-    "pk": 512,
+    "pk": 475,
     "name": "Coffee"
   },
   {
-    "pk": 507,
+    "pk": 470,
     "name": "Cookies"
   },
   {
-    "pk": 513,
+    "pk": 476,
     "name": "Desserts"
   },
   {
-    "pk": 511,
+    "pk": 474,
     "name": "Drinks"
   },
   {
-    "pk": 514,
+    "pk": 477,
     "name": "Ice Cream"
   },
   {
-    "pk": 518,
+    "pk": 481,
     "name": "Kool Aid Pickles"
   },
   {
-    "pk": 502,
+    "pk": 465,
     "name": "Pastries"
   },
   {
-    "pk": 525,
+    "pk": 488,
     "name": "Salads"
   },
   {
-    "pk": 526,
+    "pk": 489,
     "name": "Sandwiches"
   },
   {
-    "pk": 505,
+    "pk": 464,
+    "name": "Sandwiches"
+  },
+  {
+    "pk": 468,
     "name": "Sides"
   },
   {
-    "pk": 515,
+    "pk": 478,
     "name": "Split"
   },
   {
-    "pk": 503,
+    "pk": 466,
     "name": "Wings"
   }
 ]
