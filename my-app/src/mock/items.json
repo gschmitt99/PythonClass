@@ -4081,12 +4081,6 @@
         "price": 2299
       },
       {
-        "pk": 95453,
-        "id": "QPBRNSCCVFNWYGDX5Q6R6JJ3",
-        "name": "Single",
-        "price": 399
-      },
-      {
         "pk": 95454,
         "id": "RUWUMAFWBHSAP25WTDD6HEWI",
         "name": "Dozen",
@@ -4107,42 +4101,24 @@
     "id": "KSNIPHS2DWYUVLICYVJRIPRJ",
     "name": "Red Velvet Cookie",
     "description": "The classic red velvet cookie topped with rolled in white chocolate chips",
-    "price": "1.9900",
+    "price": "3.9900",
     "variations": [
-      {
-        "pk": 95253,
-        "id": "LWV5FMNTYI2SG2KREVIP2LVI",
-        "name": "small",
-        "price": 199
-      },
       {
         "pk": 95434,
         "id": "BO4QAZ6PYGRKZWORGCXGJDVY",
-        "name": "large",
+        "name": "Single",
         "price": 399
-      },
-      {
-        "pk": 95455,
-        "id": "G7NF6XXTELEVJERQS6V2BJWX",
-        "name": "Dozen sm",
-        "price": 2399
-      },
-      {
-        "pk": 95456,
-        "id": "3LU27DYSUR7HT4JGKAOFEAKY",
-        "name": "1/2 Dozen sm",
-        "price": 1199
       },
       {
         "pk": 95457,
         "id": "HDO5IZNTWDVOIEARU7ELJPLB",
-        "name": "1/2 Dozen lg",
+        "name": "1/2 Dozen",
         "price": 2299
       },
       {
         "pk": 95458,
         "id": "2AO3S5DSFDKMUQQB7CQMOWKO",
-        "name": "Dozen lg",
+        "name": "Dozen",
         "price": 4699
       }
     ],
@@ -4282,89 +4258,59 @@
     "id": "O6YP7ZWFD5KHQ6PIBTLC7RSX",
     "name": "White Chocolate Macadamia Nut",
     "description": "Delicious white chocolate cookie with chopped macadamia nuts within",
-    "price": "1.9900",
+    "price": "3.9900",
     "variations": [
-      {
-        "pk": 95463,
-        "id": "PIQGJ5YAEANSUFRSBNKZWJAP",
-        "name": "Dozen sm",
-        "price": 2399
-      },
       {
         "pk": 95464,
         "id": "MXR3DAMEBSCWQGGUIS3NPWVG",
-        "name": "Single lg",
+        "name": "Single",
         "price": 399
-      },
-      {
-        "pk": 95465,
-        "id": "UJXY3JVKYJDGAYJNACBNMNCR",
-        "name": "Single sm",
-        "price": 199
       },
       {
         "pk": 95466,
         "id": "C553IPDKPYADYTU62SG6S3XU",
-        "name": "1/2 Dozen lg",
+        "name": "1/2 Dozen",
         "price": 2299
-      },
-      {
-        "pk": 95467,
-        "id": "JSUFZDZLLGHZEXTKGZF6S2TM",
-        "name": "1/2 Dozen sm",
-        "price": 1199
       },
       {
         "pk": 95468,
         "id": "2WCPVPAAX42PK7BEDHCZ2ESU",
-        "name": "Dozen lg",
+        "name": "Dozen",
         "price": 4699
       }
     ],
     "modifier_lists": [],
-    "images": []
+    "images": [
+      {
+        "pk": 1096,
+        "image_id": "F242JBNDM7BVFUN5SAQLVRST",
+        "url": "F242JBNDM7BVFUN5SAQLVRST"
+      }
+    ]
   },
   "19302": {
     "pk": "19302",
     "id": "LMYPN3DOM5XT4ALNCHKL4LWG",
     "name": "Oatmeal Raisin",
     "description": "",
-    "price": "1.9900",
+    "price": "3.9900",
     "variations": [
       {
         "pk": 95474,
         "id": "7DHNTKEUTUNHPFW7YQTCEOUZ",
-        "name": "1/2 Dozen lg",
+        "name": "1/2 Dozen",
         "price": 2299
-      },
-      {
-        "pk": 95475,
-        "id": "MO6VBAOWJ3XZKCVUZQDNE7B7",
-        "name": "Single sm",
-        "price": 199
-      },
-      {
-        "pk": 95476,
-        "id": "KRJITFIC3TVJQXE36WLRAW2L",
-        "name": "Dozen sm",
-        "price": 2399
-      },
-      {
-        "pk": 95477,
-        "id": "NCABXWV4B7ONCSL2I2W5MYEQ",
-        "name": "1/2 Dozen sm",
-        "price": 1199
       },
       {
         "pk": 95478,
         "id": "WZKJ7ZVHL277RG24H4JJHTH3",
-        "name": "Single lg",
+        "name": "Single",
         "price": 399
       },
       {
         "pk": 95479,
         "id": "4EG7JGGDLMSPFTWNCMRLQLPW",
-        "name": "Dozen lg",
+        "name": "Dozen",
         "price": 4699
       }
     ],
@@ -6318,6 +6264,12 @@
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
             "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
+            "amount": 250
           }
         ]
       },
@@ -6612,6 +6564,12 @@
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
             "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
+            "amount": 250
           }
         ]
       },
@@ -6851,6 +6809,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -7387,6 +7351,12 @@
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
             "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
+            "amount": 250
           }
         ]
       },
@@ -7547,6 +7517,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -7830,6 +7806,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -8193,6 +8175,12 @@
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
             "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
+            "amount": 250
           }
         ]
       }
@@ -8321,6 +8309,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -8500,6 +8494,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -8830,6 +8830,12 @@
             "pk": 17849,
             "id": "5VYOKM7V3XU4TC6HGRIYZ3MG",
             "name": "Onion",
+            "amount": 250
+          },
+          {
+            "pk": 17938,
+            "id": "RSNOSB7FF6YVCOSUAGRQFNSA",
+            "name": "Cole Slaw",
             "amount": 250
           }
         ]
@@ -9335,7 +9341,7 @@
   "19124": {
     "pk": "19124",
     "id": "DP6ESKA62K656UYMS2TTB6SI",
-    "name": "20 piece wings -- pick only two flavors",
+    "name": "20 piece wings",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "21.9900",
     "variations": [
@@ -9697,7 +9703,7 @@
   "19162": {
     "pk": "19162",
     "id": "FNEAEFSAYLGU3SBUMHSJTMTC",
-    "name": "15 piece wings -- pick only two flavors",
+    "name": "15 piece wings",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "16.9900",
     "variations": [
@@ -10059,7 +10065,7 @@
   "19166": {
     "pk": "19166",
     "id": "CLEV6Q622PW752C4YBJQHSCB",
-    "name": "10 piece wings -- pick only two flavors",
+    "name": "10 piece wings",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "10.9900",
     "variations": [
@@ -10421,7 +10427,7 @@
   "19176": {
     "pk": "19176",
     "id": "L2SIA56OGKUGOP2WHVEYCGFW",
-    "name": "50 piece wings -- pick only two flavors",
+    "name": "50 piece wings",
     "description": "Golden Fried Naked Wings tossed in our sauce",
     "price": "54.9900",
     "variations": [

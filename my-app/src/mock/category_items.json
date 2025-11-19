@@ -374,7 +374,7 @@
       "pk": 19174,
       "name": "Red Velvet Cookie",
       "description": "The classic red velvet cookie topped with rolled in white chocolate chips",
-      "price": 1.99,
+      "price": 3.99,
       "images": [
         "ZKLZMKQTQX7M6WPUBHLRPG2A"
       ]
@@ -415,14 +415,16 @@
       "pk": 19300,
       "name": "White Chocolate Macadamia Nut",
       "description": "Delicious white chocolate cookie with chopped macadamia nuts within",
-      "price": 1.99,
-      "images": []
+      "price": 3.99,
+      "images": [
+        "F242JBNDM7BVFUN5SAQLVRST"
+      ]
     },
     {
       "pk": 19302,
       "name": "Oatmeal Raisin",
       "description": "",
-      "price": 1.99,
+      "price": 3.99,
       "images": [
         "6JM7NKQSCT5A52PYSN3QCZ3U"
       ]
