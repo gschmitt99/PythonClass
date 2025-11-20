@@ -52,6 +52,10 @@
     "name": "Sandwiches"
   },
   {
+    "pk": 503,
+    "name": "Seafood"
+  },
+  {
     "pk": 468,
     "name": "Sides"
   },
