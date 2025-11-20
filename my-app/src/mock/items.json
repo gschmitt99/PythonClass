@@ -7126,7 +7126,13 @@
         ]
       }
     ],
-    "images": []
+    "images": [
+      {
+        "pk": 1220,
+        "image_id": "6CMTWDRPZV6PUGX7QM2REYDT",
+        "url": "6CMTWDRPZV6PUGX7QM2REYDT"
+      }
+    ]
   },
   "19446": {
     "pk": "19446",
